@@ -1,0 +1,2 @@
+# Nursing_Paramedical_Training_Institute
+Automated website repository for Nursing_Paramedical_Training_Institute
