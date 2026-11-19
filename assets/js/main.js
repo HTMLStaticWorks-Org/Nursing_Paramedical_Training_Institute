@@ -29,28 +29,8 @@
    * @param {string} message
    * @param {'info'|'success'|'warning'} [type='info']
    */
-  function showToast(message, type) {
-    let stack = doc.querySelector('.toast-stack');
-    if (!stack) {
-      stack = doc.createElement('div');
-      stack.className = 'toast-stack';
-      stack.setAttribute('aria-live', 'polite');
-      stack.setAttribute('aria-atomic', 'true');
-      doc.body.appendChild(stack);
-    }
-    const toast = doc.createElement('div');
-    toast.className = 'toast toast--' + (type || 'info');
-    toast.setAttribute('role', 'status');
-    const iconName = type === 'success' ? 'check-circle' : (type === 'warning' ? 'alert-triangle' : 'sparkles');
-    const iconHtml = global.LifeBridgeIcons ? global.LifeBridgeIcons.getSvg(iconName, 18) : '';
-    toast.innerHTML = iconHtml + '<span>' + message + '</span>';
-    stack.appendChild(toast);
-    global.setTimeout(function () {
-      toast.style.opacity = '0';
-      toast.style.transform = 'translateY(-8px)';
-      toast.style.transition = 'opacity 220ms, transform 220ms';
-      global.setTimeout(function () { toast.remove(); }, 240);
-    }, 3400);
+  function showToast() {
+    // Pop-up toast notifications disabled across the site
   }
   global.LifeBridgeToast = showToast;
 
@@ -169,6 +149,24 @@
    * Manage sticky shrinking header, Home dropdown, and accessible mobile drawer.
    */
   function initNavigation() {
+    // Mark active nav & mobile drawer items based on current URL
+    const currentPath = global.location.pathname.replace(/\/+$/, '');
+    const currentSearch = global.location.search;
+    doc.querySelectorAll('.nav-dropdown__item[href], .mobile-drawer__link[href], .mobile-drawer__dropdown-item[href]').forEach(function (item) {
+      try {
+        const u = new URL(item.getAttribute('href'), global.location.href);
+        const itemPath = u.pathname.replace(/\/+$/, '');
+        if (itemPath === currentPath && (!u.search || u.search === currentSearch) && !u.hash) {
+          item.setAttribute('aria-current', 'page');
+          const parentDropdown = item.closest('.mobile-drawer__dropdown');
+          if (parentDropdown) {
+            const summary = parentDropdown.querySelector('summary');
+            if (summary) summary.setAttribute('aria-current', 'page');
+          }
+        }
+      } catch (e) { /* ignore */ }
+    });
+
     const header = doc.querySelector('.site-header');
     if (header) {
       const onScroll = function () {
@@ -178,7 +176,23 @@
       global.addEventListener('scroll', onScroll, { passive: true });
     }
 
-    // Accessible Dropdown toggle
+    // Accessible Dropdown toggle + hover intent bridge (prevents fast close)
+    doc.querySelectorAll('.nav-dropdown').forEach(function (dd) {
+      let closeTimer = null;
+      dd.addEventListener('mouseenter', function () {
+        if (closeTimer) {
+          global.clearTimeout(closeTimer);
+          closeTimer = null;
+        }
+        dd.classList.add('is-hovering');
+      });
+      dd.addEventListener('mouseleave', function () {
+        closeTimer = global.setTimeout(function () {
+          dd.classList.remove('is-hovering');
+        }, 220);
+      });
+    });
+
     doc.querySelectorAll('.nav-dropdown > button, .nav-dropdown > .nav-link').forEach(function (trigger) {
       trigger.addEventListener('click', function (e) {
         const parent = trigger.closest('.nav-dropdown');
@@ -348,6 +362,7 @@
     const dots = doc.querySelectorAll('.hero-slider-dot');
     if (slides.length > 1) {
       let current = 0;
+      let timer = null;
       const show = function (index) {
         slides.forEach(function (s, i) { s.classList.toggle('is-active', i === index); });
         dots.forEach(function (d, i) {
@@ -356,12 +371,17 @@
         });
         current = index;
       };
+      const startAuto = function () {
+        if (timer) global.clearInterval(timer);
+        timer = global.setInterval(function () { show((current + 1) % slides.length); }, 4000);
+      };
       dots.forEach(function (dot, idx) {
-        dot.addEventListener('click', function () { show(idx); });
+        dot.addEventListener('click', function () {
+          show(idx);
+          startAuto();
+        });
       });
-      if (!prefersReducedMotion()) {
-        global.setInterval(function () { show((current + 1) % slides.length); }, 5400);
-      }
+      startAuto();
     }
 
     const finder = doc.querySelector('#home2-course-finder');
@@ -1245,6 +1265,112 @@
   }
 
   /* ------------------------------------------------------------------------
+     SCROLL-TO-TOP FLOATING BUTTON
+     ------------------------------------------------------------------------ */
+  function initScrollTop() {
+    if (doc.querySelector('.scroll-top-btn')) return;
+    const btn = doc.createElement('button');
+    btn.type = 'button';
+    btn.className = 'scroll-top-btn no-print';
+    btn.setAttribute('aria-label', 'Scroll back to top');
+    btn.setAttribute('title', 'Back to top');
+    btn.innerHTML = '<span data-icon="chevron-up" data-size="20"></span>';
+    doc.body.appendChild(btn);
+
+    function toggleVisibility() {
+      const y = global.scrollY || doc.documentElement.scrollTop || 0;
+      btn.classList.toggle('is-visible', y > 320);
+    }
+
+    global.addEventListener('scroll', toggleVisibility, { passive: true });
+    toggleVisibility();
+
+    btn.addEventListener('click', function () {
+      global.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  /* ------------------------------------------------------------------------
+     CARD ROW ALIGNMENT (Headings, Text, Subtext & Footers across all grids)
+     ------------------------------------------------------------------------ */
+  function alignCardGrid(grid) {
+    const cards = Array.from(grid.children).filter(function (el) {
+      return el.classList && el.classList.contains('card') && el.offsetParent !== null;
+    });
+    if (!cards.length) return;
+
+    const selectors = ['.card__tag', '.card__title', '.card__text', '.card__meta'];
+
+    cards.forEach(function (card) {
+      selectors.forEach(function (sel) {
+        const el = card.querySelector(sel);
+        if (el) el.style.minHeight = '';
+      });
+    });
+
+    const rows = [];
+    cards.forEach(function (card) {
+      const top = card.offsetTop;
+      let row = rows.find(function (r) { return Math.abs(r.top - top) <= 6; });
+      if (!row) {
+        row = { top: top, items: [] };
+        rows.push(row);
+      }
+      row.items.push(card);
+    });
+
+    rows.forEach(function (row) {
+      if (row.items.length < 2) return;
+      selectors.forEach(function (sel) {
+        let maxH = 0;
+        const els = [];
+        row.items.forEach(function (card) {
+          const el = card.querySelector(sel);
+          if (el) {
+            const h = el.offsetHeight;
+            if (h > maxH) maxH = h;
+            els.push(el);
+          }
+        });
+        if (els.length >= 2 && maxH > 0) {
+          const px = maxH + 'px';
+          els.forEach(function (el) { el.style.minHeight = px; });
+        }
+      });
+    });
+  }
+
+  function initCardAlignment() {
+    const grids = Array.from(doc.querySelectorAll('.grid, .process-grid, .bento-grid'));
+    if (!grids.length) return;
+
+    function runAll() {
+      grids.forEach(alignCardGrid);
+    }
+
+    let resizeTimer = null;
+    function scheduleRun() {
+      if (resizeTimer) global.clearTimeout(resizeTimer);
+      resizeTimer = global.setTimeout(function () {
+        global.requestAnimationFrame(runAll);
+      }, 80);
+    }
+
+    runAll();
+    global.addEventListener('load', runAll);
+    global.addEventListener('resize', scheduleRun);
+    if (doc.fonts && doc.fonts.ready) {
+      doc.fonts.ready.then(runAll);
+    }
+
+    doc.addEventListener('click', function (e) {
+      if (e.target.closest('[role="tab"], [data-filter], .filter-chip, .tab-btn')) {
+        global.setTimeout(runAll, 60);
+      }
+    });
+  }
+
+  /* ------------------------------------------------------------------------
      BOOTSTRAP
      ------------------------------------------------------------------------ */
   doc.addEventListener('DOMContentLoaded', function () {
@@ -1265,6 +1391,8 @@
     initPremiumModals();
     initForms();
     initDesktopPolish();
+    initScrollTop();
+    initCardAlignment();
     if (global.LifeBridgeIcons) global.LifeBridgeIcons.render(doc);
   });
 })(window, document);

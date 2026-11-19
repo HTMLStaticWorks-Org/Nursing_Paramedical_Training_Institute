@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
   <title>LifeBridge Institute | Nursing &amp; Paramedical College</title>
   <meta name="description" content="INC-approved LifeBridge Institute of Nursing &amp; Paramedical Sciences offering B.Sc. Nursing, GNM, DMLT, EMT, simulation labs, and 96.8% hospital placements.">
   <link rel="canonical" href="https://lifebridgeinstitute.edu.in/pages/index.html">
@@ -26,14 +27,6 @@
 </head>
 <body class="has-mobile-bar">
   <a class="skip-link" href="#main-content">Skip to main content</a>
-
-  <!-- Branded ECG Preloader -->
-  <div class="lb-preloader" aria-hidden="true">
-    <svg class="lb-preloader__svg" viewBox="0 0 220 54">
-      <path d="M4 28 L66 28 L76 28 L84 12 L94 46 L104 6 L114 38 L122 28 L216 28" />
-    </svg>
-    <span class="lb-preloader__brand">LifeBridge Clinical Campus</span>
-  </div>
 
   <!-- ===================== SITE HEADER & NAVIGATION ===================== -->
   <header class="site-header" id="top">
@@ -64,20 +57,24 @@
               </a>
             </div>
           </li>
+          <li><a class="nav-link" href="about.html">About</a></li>
           <li><a class="nav-link" href="courses.html">Courses</a></li>
           <li><a class="nav-link" href="facilities.html">Facilities</a></li>
           <li><a class="nav-link" href="placements.html">Placements</a></li>
           <li><a class="nav-link" href="instructors.html">Instructors</a></li>
           <li><a class="nav-link" href="resources.html">Resources</a></li>
-          <li><a class="nav-link" href="about.html">About</a></li>
           <li><a class="nav-link" href="contact.html">Contact</a></li>
         </ul>
       </nav>
 
       <div class="header-actions">
         <div class="header-auth-links">
-          <a class="nav-link" href="login.html">Login</a>
-          <a class="nav-link" href="sign-up.html">Sign Up</a>
+          <a class="icon-btn" href="login.html" aria-label="Login" title="Login">
+            <span data-icon="log-in" data-size="18"></span>
+          </a>
+          <a class="icon-btn" href="dashboard/overview.html" aria-label="Student Dashboard" title="Student Dashboard">
+            <span data-icon="layout-dashboard" data-size="18"></span>
+          </a>
         </div>
         <button type="button" class="icon-btn" data-open-search aria-label="Quick search (Ctrl+K)" title="Search (Ctrl+K)">
           <span data-icon="search" data-size="18"></span>
@@ -111,28 +108,45 @@
       </button>
     </div>
     <nav class="mobile-drawer__nav" aria-label="Mobile navigation">
-      <div class="mobile-drawer__sub">
-        <a href="index.html">Home 1</a>
-        <a href="home-2.html">Home 2</a>
-      </div>
+      <details class="mobile-drawer__dropdown">
+        <summary class="mobile-drawer__link">
+          Home <span data-icon="chevron-down" data-size="14"></span>
+        </summary>
+        <div class="mobile-drawer__dropdown-menu">
+          <a class="mobile-drawer__dropdown-item" href="index.html">
+            <strong>Home 1 — Editorial Split</strong>
+            <span>Clinical overview &amp; placements</span>
+          </a>
+          <a class="mobile-drawer__dropdown-item" href="home-2.html">
+            <strong>Home 2 — Cinematic Finder</strong>
+            <span>Course finder &amp; SimLab tour</span>
+          </a>
+        </div>
+      </details>
+      <a class="mobile-drawer__link" href="about.html">About</a>
       <a class="mobile-drawer__link" href="courses.html">Courses</a>
       <a class="mobile-drawer__link" href="facilities.html">Facilities</a>
       <a class="mobile-drawer__link" href="placements.html">Placements</a>
       <a class="mobile-drawer__link" href="instructors.html">Instructors</a>
       <a class="mobile-drawer__link" href="resources.html">Resources</a>
-      <a class="mobile-drawer__link" href="gallery.html">Gallery</a>
-      <a class="mobile-drawer__link" href="blog.html">Blog</a>
-      <a class="mobile-drawer__link" href="about.html">About</a>
       <a class="mobile-drawer__link" href="contact.html">Contact</a>
-      <div class="mobile-drawer__sub" style="margin-top:8px">
-        <a href="login.html">Student Login</a>
-        <a href="sign-up.html">Sign Up</a>
-        <a href="dashboard/overview.html">Student Portal</a>
-      </div>
     </nav>
     <div class="mobile-drawer__footer">
-      <a class="btn btn-accent" href="admissions.html">Apply for 2026–27 Intake</a>
-      <button type="button" class="btn btn-outline" data-open-quiz style="color:#fff;border-color:rgba(255,255,255,0.35)">Find Your Course Quiz</button>
+      <div class="mobile-drawer__tools">
+        <a class="icon-btn" href="login.html" aria-label="Login" title="Login">
+          <span data-icon="log-in" data-size="18"></span>
+        </a>
+        <a class="icon-btn" href="dashboard/overview.html" aria-label="Student Dashboard" title="Student Dashboard">
+          <span data-icon="layout-dashboard" data-size="18"></span>
+        </a>
+        <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false" title="Toggle Theme">
+          <span data-icon="moon" data-size="18"></span>
+        </button>
+        <button type="button" class="icon-btn" data-rtl-toggle aria-label="Toggle RTL direction" aria-pressed="false" title="Switch LTR/RTL">
+          <span class="rtl-label mono" style="font-size:0.72rem;font-weight:700">RTL</span>
+        </button>
+      </div>
+      <a class="btn btn-accent" href="admissions.html">Apply Now</a>
     </div>
   </div>
 
@@ -197,22 +211,6 @@
             <path d="M2 24 L132 24 L148 24 L160 8 L174 42 L188 4 L202 36 L214 24 L418 24"
                   fill="none" stroke="#FF6B5E" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
-
-          <div class="hero-chip hero-chip--top">
-            <span class="accred-badge__icon" data-icon="award" data-size="20"></span>
-            <div>
-              <div class="hero-chip__val">96.8%</div>
-              <div class="hero-chip__lbl">Campus Placement</div>
-            </div>
-          </div>
-
-          <div class="hero-chip hero-chip--bottom">
-            <span class="accred-badge__icon" data-icon="heart-pulse" data-size="20" style="background:var(--accent-soft);color:var(--accent-btn)"></span>
-            <div>
-              <div class="hero-chip__val">2,100+ hrs</div>
-              <div class="hero-chip__lbl">Hospital Ward Practice</div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -268,7 +266,7 @@
           <article class="card card--placement" data-tilt style="background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.14)">
             <div class="card__body">
               <span class="card__icon" style="background:rgba(227,184,92,0.18);color:var(--gold)" data-icon="users" data-size="24"></span>
-              <span class="card__tag" style="background:rgba(255,255,255,0.12);color:var(--primary-soft)">Verified Graduates</span>
+              <span class="card__tag">Verified Graduates</span>
               <h3 class="card__title mono" style="font-size:2.2rem;color:#fff" data-count="4850" data-suffix="+">0+</h3>
               <svg class="card__ecg" viewBox="0 0 140 24" aria-hidden="true" focusable="false"><path d="M2 14 L42 14 L52 6 L60 21 L68 3 L76 18 L84 14 L138 14" /></svg>
               <p class="card__text" style="color:rgba(221,243,238,0.85)">Nurses &amp; paramedical specialists placed across India, UK, Ireland, and UAE since 2008.</p>
@@ -278,7 +276,7 @@
           <article class="card card--placement" data-tilt style="background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.14)">
             <div class="card__body">
               <span class="card__icon" style="background:rgba(255,107,94,0.2);color:var(--accent)" data-icon="trending-up" data-size="24"></span>
-              <span class="card__tag" style="background:rgba(255,255,255,0.12);color:var(--primary-soft)">International Offer</span>
+              <span class="card__tag">International Offer</span>
               <h3 class="card__title mono" style="font-size:2.2rem;color:#fff" data-count="14.5" data-decimals="1" data-prefix="INR " data-suffix=" LPA">0</h3>
               <svg class="card__ecg" viewBox="0 0 140 24" aria-hidden="true" focusable="false"><path d="M2 14 L42 14 L52 6 L60 21 L68 3 L76 18 L84 14 L138 14" /></svg>
               <p class="card__text" style="color:rgba(221,243,238,0.85)">Highest overseas critical-care nursing package secured via our OET &amp; NCLEX cell.</p>
@@ -288,7 +286,7 @@
           <article class="card card--placement" data-tilt style="background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.14)">
             <div class="card__body">
               <span class="card__icon" style="background:rgba(14,139,139,0.28);color:#7CE8E2" data-icon="hospital" data-size="24"></span>
-              <span class="card__tag" style="background:rgba(255,255,255,0.12);color:var(--primary-soft)">Recruiting Network</span>
+              <span class="card__tag">Recruiting Network</span>
               <h3 class="card__title mono" style="font-size:2.2rem;color:#fff" data-count="142" data-suffix="+">0+</h3>
               <svg class="card__ecg" viewBox="0 0 140 24" aria-hidden="true" focusable="false"><path d="M2 14 L42 14 L52 6 L60 21 L68 3 L76 18 L84 14 L138 14" /></svg>
               <p class="card__text" style="color:rgba(221,243,238,0.85)">NABH-accredited multi-specialty hospital chains conducting annual on-campus recruitment.</p>
@@ -306,12 +304,6 @@
             <span class="hospital-pill"><span data-icon="hospital" data-size="16"></span> Max Healthcare Delhi</span>
             <span class="hospital-pill"><span data-icon="hospital" data-size="16"></span> NHS Trust UK Partners</span>
             <span class="hospital-pill"><span data-icon="hospital" data-size="16"></span> Cleveland Clinic Abu Dhabi</span>
-            <span class="hospital-pill"><span data-icon="hospital" data-size="16"></span> Apollo Super Speciality</span>
-            <span class="hospital-pill"><span data-icon="hospital" data-size="16"></span> Manipal Health Enterprises</span>
-            <span class="hospital-pill"><span data-icon="hospital" data-size="16"></span> Fortis Healthcare</span>
-            <span class="hospital-pill"><span data-icon="hospital" data-size="16"></span> Narayana Health City</span>
-            <span class="hospital-pill"><span data-icon="hospital" data-size="16"></span> Aster CMI Hospitals</span>
-            <span class="hospital-pill"><span data-icon="hospital" data-size="16"></span> Max Healthcare Delhi</span>
           </div>
         </div>
       </div>
@@ -515,7 +507,6 @@
           <article class="card" data-tilt>
             <div class="card__media card__media--portrait">
               <picture><source srcset="../assets/images/home/alumni-ananya-icu-nurse.webp" type="image/webp"><img src="../assets/images/home/alumni-ananya-icu-nurse.jpg" alt="LifeBridge alumna Ananya Iyer working as a critical care ICU nurse in clinical scrubs" width="1280" height="1920" loading="lazy" decoding="async"></picture>
-              <span class="video-play-badge" aria-hidden="true" data-icon="play" data-size="20"></span>
             </div>
             <div class="card__body">
               <span class="card__tag">B.Sc. Nursing &rsquo;23</span>
@@ -531,7 +522,6 @@
           <article class="card" data-tilt>
             <div class="card__media card__media--portrait">
               <picture><source srcset="../assets/images/home/alumni-rohan-paramedic.webp" type="image/webp"><img src="../assets/images/home/alumni-rohan-paramedic.jpg" alt="LifeBridge alumnus Rohan Kulkarni standing beside an emergency response ambulance" width="1280" height="853" loading="lazy" decoding="async"></picture>
-              <span class="video-play-badge" aria-hidden="true" data-icon="play" data-size="20"></span>
             </div>
             <div class="card__body">
               <span class="card__tag">EMT Trauma &rsquo;24</span>
@@ -547,7 +537,6 @@
           <article class="card" data-tilt>
             <div class="card__media card__media--portrait">
               <picture><source srcset="../assets/images/home/alumni-meera-ot-specialist.webp" type="image/webp"><img src="../assets/images/home/alumni-meera-ot-specialist.jpg" alt="LifeBridge alumna Meera Nair serving as an operation theatre scrub specialist" width="1280" height="1920" loading="lazy" decoding="async"></picture>
-              <span class="video-play-badge" aria-hidden="true" data-icon="play" data-size="20"></span>
             </div>
             <div class="card__body">
               <span class="card__tag">OT Technology &rsquo;22</span>
@@ -738,8 +727,8 @@
           <a class="brand" href="index.html">
             <span class="brand__mark" data-icon="heart-pulse" data-size="22"></span>
             <span class="brand__text">
-              <span class="brand__name">LifeBridge Institute</span>
-              <span class="brand__sub">Nursing &amp; Paramedical Sciences</span>
+              <span class="brand__name">LifeBridge</span>
+              <span class="brand__sub">Nursing &amp; Paramedical</span>
             </span>
           </a>
           <p style="margin-top:16px;font-size:0.92rem">INC-approved Nursing College &amp; State Paramedical Board Centre of Excellence shaping compassionate bedside nurses and allied clinical specialists since 2008.</p>

@@ -78,6 +78,20 @@
   color: #7CE8E2;
 }
 
+[data-theme="dark"] .card:hover {
+  border-color: rgba(59, 240, 224, 0.45);
+  box-shadow: 0 22px 44px -14px rgba(0, 0, 0, 0.65), 0 0 24px -6px rgba(34, 181, 181, 0.28);
+}
+
+[data-theme="dark"] .card:not(.bento-card--dark):hover .card__title {
+  color: #7CE8E2;
+}
+
+[data-theme="dark"] .card:hover .card__icon {
+  background: var(--primary);
+  color: #FFFFFF;
+}
+
 [data-theme="dark"] .btn-ghost {
   color: #96F2EC;
 }
@@ -118,8 +132,58 @@
   background: #0D252D;
 }
 
+[data-theme="dark"] input[type="date"],
+[data-theme="dark"] input[type="time"],
+[data-theme="dark"] input[type="datetime-local"] {
+  color-scheme: dark;
+}
+
+[data-theme="dark"] input[type="date"]::-webkit-calendar-picker-indicator,
+[data-theme="dark"] input[type="time"]::-webkit-calendar-picker-indicator,
+[data-theme="dark"] input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.92;
+  transition: opacity var(--t-fast, 180ms) ease, transform var(--t-fast, 180ms) ease;
+}
+
+[data-theme="dark"] input[type="date"]::-webkit-calendar-picker-indicator:hover,
+[data-theme="dark"] input[type="time"]::-webkit-calendar-picker-indicator:hover,
+[data-theme="dark"] input[type="datetime-local"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+  transform: scale(1.08);
+}
+
 [data-theme="dark"] .spotlight-dark {
   background-color: #051419;
+}
+
+[data-theme="dark"] .spotlight-dark .card__tag {
+  background: rgba(21, 148, 148, 0.35) !important;
+  color: #FFFFFF !important;
+  border-color: rgba(140, 240, 234, 0.45);
+}
+
+[data-theme="dark"] .course-finder-bar label,
+[data-theme="dark"] .lb-preloader__brand,
+[data-theme="dark"] .mobile-drawer__sub a,
+[data-theme="dark"] .countdown-box__lbl,
+[data-theme="dark"] .lightbox__caption {
+  color: #DDF3EE;
+}
+
+[data-theme="dark"] .course-finder-bar select option {
+  color: #EDF7F6;
+  background: #0D252D;
+}
+
+[data-theme="dark"] .hotspot-pin.is-active {
+  color: var(--ink-deep);
+}
+
+[data-theme="dark"] .chart-tooltip {
+  background: #143B46;
+  color: #EDF7F6;
+  border: 1px solid rgba(221, 243, 238, 0.22);
 }
 
 [data-theme="dark"] .site-footer {

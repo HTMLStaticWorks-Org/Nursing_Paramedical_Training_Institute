@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
   <title>Courses | 12 Nursing &amp; Paramedical Programs — LifeBridge</title>
   <meta name="description" content="Browse 12 INC and State Board approved courses: B.Sc. Nursing, GNM, ANM, DMLT, Radiology, OT Tech, Dialysis, EMT, Physiotherapy &amp; Pharmacy Assistant.">
   <link rel="canonical" href="https://lifebridgeinstitute.edu.in/pages/courses.html">
@@ -27,14 +28,6 @@
 </head>
 <body class="has-mobile-bar">
   <a class="skip-link" href="#main-content">Skip to main content</a>
-
-  <!-- Branded ECG Preloader -->
-  <div class="lb-preloader" aria-hidden="true">
-    <svg class="lb-preloader__svg" viewBox="0 0 220 54">
-      <path d="M4 28 L66 28 L76 28 L84 12 L94 46 L104 6 L114 38 L122 28 L216 28" />
-    </svg>
-    <span class="lb-preloader__brand">LifeBridge Clinical Campus</span>
-  </div>
 
   <!-- ===================== SITE HEADER & NAVIGATION ===================== -->
   <header class="site-header" id="top">
@@ -65,20 +58,24 @@
               </a>
             </div>
           </li>
+          <li><a class="nav-link" href="about.html">About</a></li>
           <li><a class="nav-link" href="courses.html" aria-current="page">Courses</a></li>
           <li><a class="nav-link" href="facilities.html">Facilities</a></li>
           <li><a class="nav-link" href="placements.html">Placements</a></li>
           <li><a class="nav-link" href="instructors.html">Instructors</a></li>
           <li><a class="nav-link" href="resources.html">Resources</a></li>
-          <li><a class="nav-link" href="about.html">About</a></li>
           <li><a class="nav-link" href="contact.html">Contact</a></li>
         </ul>
       </nav>
 
       <div class="header-actions">
         <div class="header-auth-links">
-          <a class="nav-link" href="login.html">Login</a>
-          <a class="nav-link" href="sign-up.html">Sign Up</a>
+          <a class="icon-btn" href="login.html" aria-label="Login" title="Login">
+            <span data-icon="log-in" data-size="18"></span>
+          </a>
+          <a class="icon-btn" href="dashboard/overview.html" aria-label="Student Dashboard" title="Student Dashboard">
+            <span data-icon="layout-dashboard" data-size="18"></span>
+          </a>
         </div>
         <button type="button" class="icon-btn" data-open-search aria-label="Quick search (Ctrl+K)" title="Search (Ctrl+K)">
           <span data-icon="search" data-size="18"></span>
@@ -112,28 +109,45 @@
       </button>
     </div>
     <nav class="mobile-drawer__nav" aria-label="Mobile navigation">
-      <div class="mobile-drawer__sub">
-        <a href="index.html">Home 1</a>
-        <a href="home-2.html">Home 2</a>
-      </div>
+      <details class="mobile-drawer__dropdown">
+        <summary class="mobile-drawer__link">
+          Home <span data-icon="chevron-down" data-size="14"></span>
+        </summary>
+        <div class="mobile-drawer__dropdown-menu">
+          <a class="mobile-drawer__dropdown-item" href="index.html">
+            <strong>Home 1 — Editorial Split</strong>
+            <span>Clinical overview &amp; placements</span>
+          </a>
+          <a class="mobile-drawer__dropdown-item" href="home-2.html">
+            <strong>Home 2 — Cinematic Finder</strong>
+            <span>Course finder &amp; SimLab tour</span>
+          </a>
+        </div>
+      </details>
+      <a class="mobile-drawer__link" href="about.html">About</a>
       <a class="mobile-drawer__link" href="courses.html" aria-current="page">Courses</a>
       <a class="mobile-drawer__link" href="facilities.html">Facilities</a>
       <a class="mobile-drawer__link" href="placements.html">Placements</a>
       <a class="mobile-drawer__link" href="instructors.html">Instructors</a>
       <a class="mobile-drawer__link" href="resources.html">Resources</a>
-      <a class="mobile-drawer__link" href="gallery.html">Gallery</a>
-      <a class="mobile-drawer__link" href="blog.html">Blog</a>
-      <a class="mobile-drawer__link" href="about.html">About</a>
       <a class="mobile-drawer__link" href="contact.html">Contact</a>
-      <div class="mobile-drawer__sub" style="margin-top:8px">
-        <a href="login.html">Student Login</a>
-        <a href="sign-up.html">Sign Up</a>
-        <a href="dashboard/overview.html">Student Portal</a>
-      </div>
     </nav>
     <div class="mobile-drawer__footer">
-      <a class="btn btn-accent" href="admissions.html">Apply for 2026–27 Intake</a>
-      <button type="button" class="btn btn-outline" data-open-quiz style="color:#fff;border-color:rgba(255,255,255,0.35)">Find Your Course Quiz</button>
+      <div class="mobile-drawer__tools">
+        <a class="icon-btn" href="login.html" aria-label="Login" title="Login">
+          <span data-icon="log-in" data-size="18"></span>
+        </a>
+        <a class="icon-btn" href="dashboard/overview.html" aria-label="Student Dashboard" title="Student Dashboard">
+          <span data-icon="layout-dashboard" data-size="18"></span>
+        </a>
+        <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false" title="Toggle Theme">
+          <span data-icon="moon" data-size="18"></span>
+        </button>
+        <button type="button" class="icon-btn" data-rtl-toggle aria-label="Toggle RTL direction" aria-pressed="false" title="Switch LTR/RTL">
+          <span class="rtl-label mono" style="font-size:0.72rem;font-weight:700">RTL</span>
+        </button>
+      </div>
+      <a class="btn btn-accent" href="admissions.html">Apply Now</a>
     </div>
   </div>
 
@@ -205,7 +219,6 @@
           <article class="card card--course course-item" data-tilt data-cat="nursing" data-duration="4-year" data-months="48" data-fee="115000">
             <div class="card__media"><picture><source srcset="../assets/images/courses/bsc-nursing-ward-care.webp" type="image/webp"><img src="../assets/images/courses/bsc-nursing-ward-care.jpg" alt="B.Sc. Nursing clinical training in intravenous infusion monitoring and bedside care" width="1280" height="853" loading="lazy" decoding="async"></picture></div>
             <div class="card__body">
-              <span class="card__icon" data-icon="stethoscope" data-size="24"></span>
               <span class="card__tag">Nursing</span>
               <h3 class="card__title">B.Sc. Nursing</h3>
               <p class="card__text">Flagship university nursing degree preparing Registered Nurses for tertiary ICUs and overseas NCLEX/NHS pathways.</p>
@@ -221,7 +234,6 @@
           <article class="card card--course course-item" data-tilt data-cat="nursing" data-duration="3-year" data-months="36" data-fee="82000">
             <div class="card__media"><picture><source srcset="../assets/images/courses/gnm-nursing-diploma.webp" type="image/webp"><img src="../assets/images/courses/gnm-nursing-diploma.jpg" alt="General Nursing and Midwifery trainee performing cardiopulmonary auscultation" width="1280" height="1920" loading="lazy" decoding="async"></picture></div>
             <div class="card__body">
-              <span class="card__icon" data-icon="heart-pulse" data-size="24"></span>
               <span class="card__tag">Nursing</span>
               <h3 class="card__title">GNM (General Nursing & Midwifery)</h3>
               <p class="card__text">Comprehensive hospital nursing and midwifery diploma open to Science, Commerce, and Arts graduates.</p>
@@ -237,7 +249,6 @@
           <article class="card card--course course-item" data-tilt data-cat="nursing" data-duration="2-year" data-months="24" data-fee="54000">
             <div class="card__media"><picture><source srcset="../assets/images/courses/anm-community-midwifery.webp" type="image/webp"><img src="../assets/images/courses/anm-community-midwifery.jpg" alt="Auxiliary Nurse Midwife trainee caring for a newborn in a postnatal ward" width="1280" height="936" loading="lazy" decoding="async"></picture></div>
             <div class="card__body">
-              <span class="card__icon" data-icon="users" data-size="24"></span>
               <span class="card__tag">Nursing</span>
               <h3 class="card__title">ANM (Auxiliary Nurse Midwife)</h3>
               <p class="card__text">Maternal, newborn, immunization, and community primary healthcare training for public health careers.</p>
@@ -253,7 +264,6 @@
           <article class="card card--course course-item" data-tilt data-cat="nursing" data-duration="2-year" data-months="24" data-fee="98000">
             <div class="card__media"><picture><source srcset="../assets/images/courses/post-basic-bsc-nursing.webp" type="image/webp"><img src="../assets/images/courses/post-basic-bsc-nursing.jpg" alt="Registered nurses collaborating on advanced clinical case studies during Post Basic B.Sc. Nursing" width="1280" height="853" loading="lazy" decoding="async"></picture></div>
             <div class="card__body">
-              <span class="card__icon" data-icon="graduation-cap" data-size="24"></span>
               <span class="card__tag">Nursing</span>
               <h3 class="card__title">Post Basic B.Sc. Nursing</h3>
               <p class="card__text">Degree upgrade for Registered GNM Nurses aiming for ICU leadership, nursing education, or global migration.</p>
@@ -269,7 +279,6 @@
           <article class="card card--course course-item" data-tilt data-cat="paramedical" data-duration="2-year" data-months="24" data-fee="62000">
             <div class="card__media"><picture><source srcset="../assets/images/courses/dmlt-medical-laboratory.webp" type="image/webp"><img src="../assets/images/courses/dmlt-medical-laboratory.jpg" alt="Medical Laboratory Technology student examining hematology slides under a microscope" width="1280" height="720" loading="lazy" decoding="async"></picture></div>
             <div class="card__body">
-              <span class="card__icon" data-icon="microscope" data-size="24"></span>
               <span class="card__tag">Paramedical</span>
               <h3 class="card__title">DMLT (Medical Lab Technology)</h3>
               <p class="card__text">Hands-on hematology, clinical biochemistry, microbiology, and pathology bench diagnostics.</p>
@@ -285,7 +294,6 @@
           <article class="card card--course course-item" data-tilt data-cat="paramedical" data-duration="2-year" data-months="24" data-fee="68000">
             <div class="card__media"><picture><source srcset="../assets/images/courses/radiology-imaging-ct-scan.webp" type="image/webp"><img src="../assets/images/courses/radiology-imaging-ct-scan.jpg" alt="Modern diagnostic CT scanner bay for Radiology and Medical Imaging Technology training" width="1280" height="853" loading="lazy" decoding="async"></picture></div>
             <div class="card__body">
-              <span class="card__icon" data-icon="scan" data-size="24"></span>
               <span class="card__tag">Paramedical</span>
               <h3 class="card__title">Radiology & Imaging Technology</h3>
               <p class="card__text">Digital X-ray, multi-slice CT, MRI acquisition, and radiation safety inside partner diagnostic wings.</p>
@@ -301,7 +309,6 @@
           <article class="card card--course course-item" data-tilt data-cat="allied" data-duration="2-year" data-months="24" data-fee="66000">
             <div class="card__media"><picture><source srcset="../assets/images/courses/operation-theatre-tech.webp" type="image/webp"><img src="../assets/images/courses/operation-theatre-tech.jpg" alt="Operation Theatre Technology team preparing sterile surgical instrumentation" width="1280" height="853" loading="lazy" decoding="async"></picture></div>
             <div class="card__body">
-              <span class="card__icon" data-icon="syringe" data-size="24"></span>
               <span class="card__tag">Allied</span>
               <h3 class="card__title">Operation Theatre Technology</h3>
               <p class="card__text">Sterile surgical suite management, anaesthesia machine calibration, and CSSD instrument workflows.</p>
@@ -317,7 +324,6 @@
           <article class="card card--course course-item" data-tilt data-cat="allied" data-duration="1-year" data-months="12" data-fee="48000">
             <div class="card__media"><picture><source srcset="../assets/images/courses/emt-emergency-ambulance.webp" type="image/webp"><img src="../assets/images/courses/emt-emergency-ambulance.jpg" alt="Emergency Medical Technician trainees inspecting pre-hospital trauma kits inside an ambulance" width="1280" height="853" loading="lazy" decoding="async"></picture></div>
             <div class="card__body">
-              <span class="card__icon" data-icon="ambulance" data-size="24"></span>
               <span class="card__tag">Allied</span>
               <h3 class="card__title">Emergency Medical Technician (EMT)</h3>
               <p class="card__text">Pre-hospital trauma rescue, ACLS/BLS cardiac arrest response, and ambulance emergency dispatch training.</p>
@@ -333,7 +339,6 @@
           <article class="card card--course course-item" data-tilt data-cat="allied" data-duration="2-year" data-months="24" data-fee="64000">
             <div class="card__media"><picture><source srcset="../assets/images/courses/dialysis-technician-unit.webp" type="image/webp"><img src="../assets/images/courses/dialysis-technician-unit.jpg" alt="Hemodialysis and ICU multi-parameter monitoring screen during renal care training" width="1280" height="1920" loading="lazy" decoding="async"></picture></div>
             <div class="card__body">
-              <span class="card__icon" data-icon="activity" data-size="24"></span>
               <span class="card__tag">Allied</span>
               <h3 class="card__title">Dialysis Technician</h3>
               <p class="card__text">Hemodialysis vascular access monitoring, water purification QA, and nephrology ICU patient support.</p>
@@ -349,7 +354,6 @@
           <article class="card card--course course-item" data-tilt data-cat="certificate" data-duration="1-year" data-months="12" data-fee="44000">
             <div class="card__media"><picture><source srcset="../assets/images/courses/physiotherapy-assistant-rehab.webp" type="image/webp"><img src="../assets/images/courses/physiotherapy-assistant-rehab.jpg" alt="Physiotherapy Assistant guiding a patient through lower-limb mobility rehabilitation" width="1280" height="1920" loading="lazy" decoding="async"></picture></div>
             <div class="card__body">
-              <span class="card__icon" data-icon="shield-check" data-size="24"></span>
               <span class="card__tag">Certificate</span>
               <h3 class="card__title">Physiotherapy Assistant</h3>
               <p class="card__text">Electrotherapy modalities, orthopaedic mobility rehabilitation, and neuro-recovery exercise support.</p>
@@ -365,7 +369,6 @@
           <article class="card card--course course-item" data-tilt data-cat="certificate" data-duration="1-year" data-months="12" data-fee="42000">
             <div class="card__media"><picture><source srcset="../assets/images/courses/pharmacy-assistant-dispensary.webp" type="image/webp"><img src="../assets/images/courses/pharmacy-assistant-dispensary.jpg" alt="Pharmacy Assistant managing clinical formulary stock in a teaching dispensary" width="1280" height="1920" loading="lazy" decoding="async"></picture></div>
             <div class="card__body">
-              <span class="card__icon" data-icon="pill" data-size="24"></span>
               <span class="card__tag">Certificate</span>
               <h3 class="card__title">Pharmacy Assistant</h3>
               <p class="card__text">Hospital formulary dispensing, inventory cold-chain management, and safe dosage verification.</p>
@@ -381,7 +384,6 @@
           <article class="card card--course course-item" data-tilt data-cat="certificate" data-duration="1-year" data-months="6" data-fee="28000">
             <div class="card__media"><picture><source srcset="../assets/images/courses/patient-care-assistant-elderly.webp" type="image/webp"><img src="../assets/images/courses/patient-care-assistant-elderly.jpg" alt="Patient Care Assistant providing compassionate bedside support to a senior patient" width="1280" height="853" loading="lazy" decoding="async"></picture></div>
             <div class="card__body">
-              <span class="card__icon" data-icon="heart-pulse" data-size="24"></span>
               <span class="card__tag">Certificate</span>
               <h3 class="card__title">Patient Care Assistant (PCA)</h3>
               <p class="card__text">Bedside vitals recording, geriatric mobility care, hygiene support, and home-ICU assistance.</p>
@@ -607,8 +609,8 @@
           <a class="brand" href="index.html">
             <span class="brand__mark" data-icon="heart-pulse" data-size="22"></span>
             <span class="brand__text">
-              <span class="brand__name">LifeBridge Institute</span>
-              <span class="brand__sub">Nursing &amp; Paramedical Sciences</span>
+              <span class="brand__name">LifeBridge</span>
+              <span class="brand__sub">Nursing &amp; Paramedical</span>
             </span>
           </a>
           <p style="margin-top:16px;font-size:0.92rem">INC-approved Nursing College &amp; State Paramedical Board Centre of Excellence shaping compassionate bedside nurses and allied clinical specialists since 2008.</p>

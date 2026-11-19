@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
   <title>Contact &amp; Campus Visit Booking | LifeBridge Institute</title>
   <meta name="description" content="Contact LifeBridge Institute admissions helpline, department emails, campus hours, directions in Bengaluru, and book a guided simulation lab visit.">
   <link rel="canonical" href="https://lifebridgeinstitute.edu.in/pages/contact.html">
@@ -26,14 +27,6 @@
 </head>
 <body class="has-mobile-bar">
   <a class="skip-link" href="#main-content">Skip to main content</a>
-
-  <!-- Branded ECG Preloader -->
-  <div class="lb-preloader" aria-hidden="true">
-    <svg class="lb-preloader__svg" viewBox="0 0 220 54">
-      <path d="M4 28 L66 28 L76 28 L84 12 L94 46 L104 6 L114 38 L122 28 L216 28" />
-    </svg>
-    <span class="lb-preloader__brand">LifeBridge Clinical Campus</span>
-  </div>
 
   <!-- ===================== SITE HEADER & NAVIGATION ===================== -->
   <header class="site-header" id="top">
@@ -64,20 +57,24 @@
               </a>
             </div>
           </li>
+          <li><a class="nav-link" href="about.html">About</a></li>
           <li><a class="nav-link" href="courses.html">Courses</a></li>
           <li><a class="nav-link" href="facilities.html">Facilities</a></li>
           <li><a class="nav-link" href="placements.html">Placements</a></li>
           <li><a class="nav-link" href="instructors.html">Instructors</a></li>
           <li><a class="nav-link" href="resources.html">Resources</a></li>
-          <li><a class="nav-link" href="about.html">About</a></li>
           <li><a class="nav-link" href="contact.html" aria-current="page">Contact</a></li>
         </ul>
       </nav>
 
       <div class="header-actions">
         <div class="header-auth-links">
-          <a class="nav-link" href="login.html">Login</a>
-          <a class="nav-link" href="sign-up.html">Sign Up</a>
+          <a class="icon-btn" href="login.html" aria-label="Login" title="Login">
+            <span data-icon="log-in" data-size="18"></span>
+          </a>
+          <a class="icon-btn" href="dashboard/overview.html" aria-label="Student Dashboard" title="Student Dashboard">
+            <span data-icon="layout-dashboard" data-size="18"></span>
+          </a>
         </div>
         <button type="button" class="icon-btn" data-open-search aria-label="Quick search (Ctrl+K)" title="Search (Ctrl+K)">
           <span data-icon="search" data-size="18"></span>
@@ -111,28 +108,45 @@
       </button>
     </div>
     <nav class="mobile-drawer__nav" aria-label="Mobile navigation">
-      <div class="mobile-drawer__sub">
-        <a href="index.html">Home 1</a>
-        <a href="home-2.html">Home 2</a>
-      </div>
+      <details class="mobile-drawer__dropdown">
+        <summary class="mobile-drawer__link">
+          Home <span data-icon="chevron-down" data-size="14"></span>
+        </summary>
+        <div class="mobile-drawer__dropdown-menu">
+          <a class="mobile-drawer__dropdown-item" href="index.html">
+            <strong>Home 1 — Editorial Split</strong>
+            <span>Clinical overview &amp; placements</span>
+          </a>
+          <a class="mobile-drawer__dropdown-item" href="home-2.html">
+            <strong>Home 2 — Cinematic Finder</strong>
+            <span>Course finder &amp; SimLab tour</span>
+          </a>
+        </div>
+      </details>
+      <a class="mobile-drawer__link" href="about.html">About</a>
       <a class="mobile-drawer__link" href="courses.html">Courses</a>
       <a class="mobile-drawer__link" href="facilities.html">Facilities</a>
       <a class="mobile-drawer__link" href="placements.html">Placements</a>
       <a class="mobile-drawer__link" href="instructors.html">Instructors</a>
       <a class="mobile-drawer__link" href="resources.html">Resources</a>
-      <a class="mobile-drawer__link" href="gallery.html">Gallery</a>
-      <a class="mobile-drawer__link" href="blog.html">Blog</a>
-      <a class="mobile-drawer__link" href="about.html">About</a>
       <a class="mobile-drawer__link" href="contact.html" aria-current="page">Contact</a>
-      <div class="mobile-drawer__sub" style="margin-top:8px">
-        <a href="login.html">Student Login</a>
-        <a href="sign-up.html">Sign Up</a>
-        <a href="dashboard/overview.html">Student Portal</a>
-      </div>
     </nav>
     <div class="mobile-drawer__footer">
-      <a class="btn btn-accent" href="admissions.html">Apply for 2026–27 Intake</a>
-      <button type="button" class="btn btn-outline" data-open-quiz style="color:#fff;border-color:rgba(255,255,255,0.35)">Find Your Course Quiz</button>
+      <div class="mobile-drawer__tools">
+        <a class="icon-btn" href="login.html" aria-label="Login" title="Login">
+          <span data-icon="log-in" data-size="18"></span>
+        </a>
+        <a class="icon-btn" href="dashboard/overview.html" aria-label="Student Dashboard" title="Student Dashboard">
+          <span data-icon="layout-dashboard" data-size="18"></span>
+        </a>
+        <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false" title="Toggle Theme">
+          <span data-icon="moon" data-size="18"></span>
+        </button>
+        <button type="button" class="icon-btn" data-rtl-toggle aria-label="Toggle RTL direction" aria-pressed="false" title="Switch LTR/RTL">
+          <span class="rtl-label mono" style="font-size:0.72rem;font-weight:700">RTL</span>
+        </button>
+      </div>
+      <a class="btn btn-accent" href="admissions.html">Apply Now</a>
     </div>
   </div>
 
@@ -158,9 +172,19 @@
         <h2 id="ct-cards-title" class="sr-only">Campus Contact Channels</h2>
         <div class="grid grid-4 reveal">
           <article class="card" data-tilt><div class="card__body"><span class="card__icon" data-icon="phone" data-size="22"></span><span class="card__tag">Admissions Helpline</span><h3 class="card__title mono" style="font-size:1.1rem">+91 80 4829 1100</h3><p class="card__text">WhatsApp Support: <span class="mono">+91 98450 22190</span></p></div></article>
-          <article class="card" data-tilt><div class="card__body"><span class="card__icon" data-icon="mail" data-size="22"></span><span class="card__tag">Department Emails</span><h3 class="card__title" style="font-size:1.05rem">Admissions &amp; Dean</h3><p class="card__text">admissions@lifebridgeinstitute.edu.in<br>placements@lifebridgeinstitute.edu.in</p></div></article>
+          <article class="card" data-tilt><div class="card__body"><span class="card__icon" data-icon="mail" data-size="22"></span><span class="card__tag">Department Emails</span><h3 class="card__title" style="font-size:1.05rem">Admissions &amp; Dean</h3><p class="card__text" style="font-size:0.78rem;overflow-wrap:anywhere">admissions@lifebridgeinstitute.edu.in<br>placements@lifebridgeinstitute.edu.in</p></div></article>
           <article class="card" data-tilt><div class="card__body"><span class="card__icon" data-icon="clock" data-size="22"></span><span class="card__tag">Working Hours</span><h3 class="card__title" style="font-size:1.05rem">Mon – Sat Open</h3><p class="card__text">09:00 AM – 05:30 PM IST<br>24x7 Hostel Warden Desk</p></div></article>
           <article class="card" data-tilt><div class="card__body"><span class="card__icon" data-icon="map-pin" data-size="22"></span><span class="card__tag">Campus Address</span><h3 class="card__title" style="font-size:1.05rem">Hebbal, Bengaluru</h3><p class="card__text">Plot 42, Health Sciences Corridor, Ring Road, KA 560024</p></div></article>
+        </div>
+
+        <div class="reveal" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px;margin-top:32px">
+          <span class="mono" style="font-size:0.82rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--slate-muted)">Follow Campus Updates</span>
+          <div style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap">
+            <a class="icon-btn" href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><span data-icon="linkedin" data-size="18"></span></a>
+            <a class="icon-btn" href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><span data-icon="instagram" data-size="18"></span></a>
+            <a class="icon-btn" href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><span data-icon="youtube" data-size="18"></span></a>
+            <a class="icon-btn" href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><span data-icon="facebook" data-size="18"></span></a>
+          </div>
         </div>
       </div>
     </section>
@@ -211,16 +235,27 @@
       </div>
     </section>
 
-    <!-- ===================== GOOGLE MAPS PLACEHOLDER ===================== -->
+    <!-- ===================== GOOGLE MAPS EMBED ===================== -->
     <section class="section section--alt" aria-labelledby="ct-map-title">
       <div class="container">
-        <div class="campus-map spotlight-dark reveal" style="min-height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
-          <!-- TODO: Replace this placeholder panel with your live Google Maps iframe embed -->
+        <div class="campus-map spotlight-dark reveal" style="display:flex;flex-direction:column;align-items:center;text-align:center">
           <span class="eyebrow">Campus GPS Locator</span>
           <h2 id="ct-map-title">Plot 42, Health Sciences Corridor, Hebbal Ring Road, Bengaluru 560024</h2>
           <p class="lead">12 mins from Hebbal Flyover &bull; 28 mins from Kempegowda International Airport &bull; Direct BMTC &amp; Metro Feeder Stop at Main Gate.</p>
-          <p class="mono" style="font-size:0.88rem;color:var(--gold)">13.0358&deg; N, 77.5970&deg; E &bull; Google Maps Embed Hook Ready</p>
-          <div class="btn-group" style="margin-top:16px">
+          <p class="mono" style="font-size:0.88rem;color:var(--gold)">13.0358&deg; N, 77.5970&deg; E</p>
+          <div style="width:100%;margin-top:20px;border-radius:var(--r-md);overflow:hidden;border:1px solid rgba(255,255,255,0.16);box-shadow:var(--shadow-md)">
+            <iframe
+              title="LifeBridge Institute Campus Location Map — Hebbal Ring Road, Bengaluru"
+              src="https://www.google.com/maps?q=13.0358,77.5970&z=15&output=embed"
+              width="100%"
+              height="380"
+              style="border:0;display:block;width:100%"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="btn-group" style="margin-top:20px">
             <a class="btn btn-outline" href="https://maps.google.com/?q=13.0358,77.5970" target="_blank" rel="noopener noreferrer">Open Directions in Google Maps <span data-icon="external-link" data-size="16"></span></a>
           </div>
         </div>
@@ -237,8 +272,8 @@
           <a class="brand" href="index.html">
             <span class="brand__mark" data-icon="heart-pulse" data-size="22"></span>
             <span class="brand__text">
-              <span class="brand__name">LifeBridge Institute</span>
-              <span class="brand__sub">Nursing &amp; Paramedical Sciences</span>
+              <span class="brand__name">LifeBridge</span>
+              <span class="brand__sub">Nursing &amp; Paramedical</span>
             </span>
           </a>
           <p style="margin-top:16px;font-size:0.92rem">INC-approved Nursing College &amp; State Paramedical Board Centre of Excellence shaping compassionate bedside nurses and allied clinical specialists since 2008.</p>

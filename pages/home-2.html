@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
   <title>LifeBridge Home 2 | Course Finder &amp; Simulation Lab Tour</title>
   <meta name="description" content="Explore LifeBridge Nursing &amp; Paramedical courses with our interactive Course Finder, Career Path explorer, live ICU Simulation Lab hotspots, and scholarships.">
   <link rel="canonical" href="https://lifebridgeinstitute.edu.in/pages/home-2.html">
@@ -27,14 +28,6 @@
 </head>
 <body class="has-mobile-bar">
   <a class="skip-link" href="#main-content">Skip to main content</a>
-
-  <!-- Branded ECG Preloader -->
-  <div class="lb-preloader" aria-hidden="true">
-    <svg class="lb-preloader__svg" viewBox="0 0 220 54">
-      <path d="M4 28 L66 28 L76 28 L84 12 L94 46 L104 6 L114 38 L122 28 L216 28" />
-    </svg>
-    <span class="lb-preloader__brand">LifeBridge Clinical Campus</span>
-  </div>
 
   <!-- ===================== SITE HEADER & NAVIGATION ===================== -->
   <header class="site-header" id="top">
@@ -65,20 +58,24 @@
               </a>
             </div>
           </li>
+          <li><a class="nav-link" href="about.html">About</a></li>
           <li><a class="nav-link" href="courses.html">Courses</a></li>
           <li><a class="nav-link" href="facilities.html">Facilities</a></li>
           <li><a class="nav-link" href="placements.html">Placements</a></li>
           <li><a class="nav-link" href="instructors.html">Instructors</a></li>
           <li><a class="nav-link" href="resources.html">Resources</a></li>
-          <li><a class="nav-link" href="about.html">About</a></li>
           <li><a class="nav-link" href="contact.html">Contact</a></li>
         </ul>
       </nav>
 
       <div class="header-actions">
         <div class="header-auth-links">
-          <a class="nav-link" href="login.html">Login</a>
-          <a class="nav-link" href="sign-up.html">Sign Up</a>
+          <a class="icon-btn" href="login.html" aria-label="Login" title="Login">
+            <span data-icon="log-in" data-size="18"></span>
+          </a>
+          <a class="icon-btn" href="dashboard/overview.html" aria-label="Student Dashboard" title="Student Dashboard">
+            <span data-icon="layout-dashboard" data-size="18"></span>
+          </a>
         </div>
         <button type="button" class="icon-btn" data-open-search aria-label="Quick search (Ctrl+K)" title="Search (Ctrl+K)">
           <span data-icon="search" data-size="18"></span>
@@ -112,28 +109,45 @@
       </button>
     </div>
     <nav class="mobile-drawer__nav" aria-label="Mobile navigation">
-      <div class="mobile-drawer__sub">
-        <a href="index.html">Home 1</a>
-        <a href="home-2.html">Home 2</a>
-      </div>
+      <details class="mobile-drawer__dropdown">
+        <summary class="mobile-drawer__link">
+          Home <span data-icon="chevron-down" data-size="14"></span>
+        </summary>
+        <div class="mobile-drawer__dropdown-menu">
+          <a class="mobile-drawer__dropdown-item" href="index.html">
+            <strong>Home 1 — Editorial Split</strong>
+            <span>Clinical overview &amp; placements</span>
+          </a>
+          <a class="mobile-drawer__dropdown-item" href="home-2.html">
+            <strong>Home 2 — Cinematic Finder</strong>
+            <span>Course finder &amp; SimLab tour</span>
+          </a>
+        </div>
+      </details>
+      <a class="mobile-drawer__link" href="about.html">About</a>
       <a class="mobile-drawer__link" href="courses.html">Courses</a>
       <a class="mobile-drawer__link" href="facilities.html">Facilities</a>
       <a class="mobile-drawer__link" href="placements.html">Placements</a>
       <a class="mobile-drawer__link" href="instructors.html">Instructors</a>
       <a class="mobile-drawer__link" href="resources.html">Resources</a>
-      <a class="mobile-drawer__link" href="gallery.html">Gallery</a>
-      <a class="mobile-drawer__link" href="blog.html">Blog</a>
-      <a class="mobile-drawer__link" href="about.html">About</a>
       <a class="mobile-drawer__link" href="contact.html">Contact</a>
-      <div class="mobile-drawer__sub" style="margin-top:8px">
-        <a href="login.html">Student Login</a>
-        <a href="sign-up.html">Sign Up</a>
-        <a href="dashboard/overview.html">Student Portal</a>
-      </div>
     </nav>
     <div class="mobile-drawer__footer">
-      <a class="btn btn-accent" href="admissions.html">Apply for 2026–27 Intake</a>
-      <button type="button" class="btn btn-outline" data-open-quiz style="color:#fff;border-color:rgba(255,255,255,0.35)">Find Your Course Quiz</button>
+      <div class="mobile-drawer__tools">
+        <a class="icon-btn" href="login.html" aria-label="Login" title="Login">
+          <span data-icon="log-in" data-size="18"></span>
+        </a>
+        <a class="icon-btn" href="dashboard/overview.html" aria-label="Student Dashboard" title="Student Dashboard">
+          <span data-icon="layout-dashboard" data-size="18"></span>
+        </a>
+        <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false" title="Toggle Theme">
+          <span data-icon="moon" data-size="18"></span>
+        </button>
+        <button type="button" class="icon-btn" data-rtl-toggle aria-label="Toggle RTL direction" aria-pressed="false" title="Switch LTR/RTL">
+          <span class="rtl-label mono" style="font-size:0.72rem;font-weight:700">RTL</span>
+        </button>
+      </div>
+      <a class="btn btn-accent" href="admissions.html">Apply Now</a>
     </div>
   </div>
 
@@ -554,50 +568,60 @@
           <h2 id="h2-voices-title">Unfiltered Voices From Our Current Batches</h2>
         </div>
 
-        <div class="masonry-grid reveal">
-          <div class="masonry-item">
-            <article class="card" data-tilt>
-              <div class="card__media card__media--portrait"><picture><source srcset="../assets/images/home/voice-student-priya.webp" type="image/webp"><img src="../assets/images/home/voice-student-priya.jpg" alt="B.Sc. Nursing student Priya Sharma with clinical textbooks and stethoscope" width="1280" height="1920" loading="lazy" decoding="async"></picture></div>
-              <div class="card__body">
-                <span class="card__tag">B.Sc. Nursing Sem VI</span>
-                <h3 class="card__title">Priya Sharma</h3>
-                <p class="card__text">&ldquo;Practicing labor-room emergencies on obstetric simulators before my actual OBG posting completely eliminated first-day nerves.&rdquo;</p>
-              </div>
-            </article>
-          </div>
+        <div class="grid grid-3 reveal">
+          <article class="card" data-tilt>
+            <div class="card__media card__media--portrait"><picture><source srcset="../assets/images/home/voice-student-priya.webp" type="image/webp"><img src="../assets/images/home/voice-student-priya.jpg" alt="B.Sc. Nursing student Priya Sharma with clinical textbooks and stethoscope" width="1280" height="1920" loading="lazy" decoding="async"></picture></div>
+            <div class="card__body">
+              <span class="card__tag">B.Sc. Nursing Sem VI</span>
+              <h3 class="card__title">Priya Sharma</h3>
+              <p class="card__text">&ldquo;Practicing labor-room emergencies on obstetric simulators before my actual OBG posting completely eliminated first-day nerves.&rdquo;</p>
+            </div>
+          </article>
 
-          <div class="masonry-item">
-            <article class="card" data-tilt>
-              <div class="card__media card__media--portrait"><picture><source srcset="../assets/images/home/voice-student-kabir.webp" type="image/webp"><img src="../assets/images/home/voice-student-kabir.jpg" alt="GNM student Kabir Malhotra holding an anatomy textbook in clinical scrubs" width="1280" height="1920" loading="lazy" decoding="async"></picture></div>
-              <div class="card__body">
-                <span class="card__tag">GNM Year 3</span>
-                <h3 class="card__title">Kabir Malhotra</h3>
-                <p class="card__text">&ldquo;Coming from a non-biology stream, I was worried about anatomy—our museum models and weekend mentor clinics turned it into my highest score.&rdquo;</p>
-              </div>
-            </article>
-          </div>
+          <article class="card" data-tilt>
+            <div class="card__media card__media--portrait"><picture><source srcset="../assets/images/home/voice-student-kabir.webp" type="image/webp"><img src="../assets/images/home/voice-student-kabir.jpg" alt="GNM student Kabir Malhotra holding an anatomy textbook in clinical scrubs" width="1280" height="1920" loading="lazy" decoding="async"></picture></div>
+            <div class="card__body">
+              <span class="card__tag">GNM Year 3</span>
+              <h3 class="card__title">Kabir Malhotra</h3>
+              <p class="card__text">&ldquo;Coming from a non-biology stream, I was worried about anatomy—our museum models and weekend mentor clinics turned it into my highest score.&rdquo;</p>
+            </div>
+          </article>
 
-          <div class="masonry-item">
-            <article class="card" data-tilt>
-              <div class="card__media card__media--portrait"><picture><source srcset="../assets/images/home/voice-student-fatima.webp" type="image/webp"><img src="../assets/images/home/voice-student-fatima.jpg" alt="B.Sc. Nursing student Fatima Siddiqui wearing clinical scrubs and stethoscope" width="1280" height="1600" loading="lazy" decoding="async"></picture></div>
-              <div class="card__body">
-                <span class="card__tag">B.Sc. Nursing Sem IV</span>
-                <h3 class="card__title">Fatima Siddiqui</h3>
-                <p class="card__text">&ldquo;The hostel feels safe and peaceful even after late evening hospital shifts, and our study lounge is open whenever OSCE exams approach.&rdquo;</p>
-              </div>
-            </article>
-          </div>
+          <article class="card" data-tilt>
+            <div class="card__media card__media--portrait"><picture><source srcset="../assets/images/home/voice-student-fatima.webp" type="image/webp"><img src="../assets/images/home/voice-student-fatima.jpg" alt="B.Sc. Nursing student Fatima Siddiqui wearing clinical scrubs and stethoscope" width="1280" height="1600" loading="lazy" decoding="async"></picture></div>
+            <div class="card__body">
+              <span class="card__tag">B.Sc. Nursing Sem IV</span>
+              <h3 class="card__title">Fatima Siddiqui</h3>
+              <p class="card__text">&ldquo;The hostel feels safe and peaceful even after late evening hospital shifts, and our study lounge is open whenever OSCE exams approach.&rdquo;</p>
+            </div>
+          </article>
 
-          <div class="masonry-item">
-            <article class="card" data-tilt>
-              <div class="card__media card__media--portrait"><picture><source srcset="../assets/images/home/voice-student-daniel.webp" type="image/webp"><img src="../assets/images/home/voice-student-daniel.jpg" alt="EMT Paramedical student Daniel Joseph in clinical training scrubs" width="1280" height="1920" loading="lazy" decoding="async"></picture></div>
-              <div class="card__body">
-                <span class="card__tag">EMT Paramedic</span>
-                <h3 class="card__title">Daniel Joseph</h3>
-                <p class="card__text">&ldquo;Every Friday is a live trauma triage simulation outdoors with real stretchers, spine boards, and radio handover drills.&rdquo;</p>
-              </div>
-            </article>
-          </div>
+          <article class="card" data-tilt>
+            <div class="card__media card__media--portrait"><picture><source srcset="../assets/images/home/voice-student-daniel.webp" type="image/webp"><img src="../assets/images/home/voice-student-daniel.jpg" alt="EMT Paramedical student Daniel Joseph in clinical training scrubs" width="1280" height="1920" loading="lazy" decoding="async"></picture></div>
+            <div class="card__body">
+              <span class="card__tag">EMT Paramedic</span>
+              <h3 class="card__title">Daniel Joseph</h3>
+              <p class="card__text">&ldquo;Every Friday is a live trauma triage simulation outdoors with real stretchers, spine boards, and radio handover drills.&rdquo;</p>
+            </div>
+          </article>
+
+          <article class="card" data-tilt>
+            <div class="card__media card__media--portrait"><picture><source srcset="../assets/images/placements/placed-student-sneha-apollo.webp" type="image/webp"><img src="../assets/images/placements/placed-student-sneha-apollo.jpg" alt="DMLT student Anjali Nair in clinical laboratory coat" width="1280" height="1600" loading="lazy" decoding="async"></picture></div>
+            <div class="card__body">
+              <span class="card__tag">DMLT Year 2</span>
+              <h3 class="card__title">Anjali Nair</h3>
+              <p class="card__text">&ldquo;Our haematology and microbiology practicals run on automated analyzers identical to NABL-accredited hospital labs.&rdquo;</p>
+            </div>
+          </article>
+
+          <article class="card" data-tilt>
+            <div class="card__media card__media--portrait"><picture><source srcset="../assets/images/placements/placed-student-rahul-max-icu.webp" type="image/webp"><img src="../assets/images/placements/placed-student-rahul-max-icu.jpg" alt="OT and Anesthesia Technology student Rohan Kulkarni in clinical coat with tablet" width="1280" height="1920" loading="lazy" decoding="async"></picture></div>
+            <div class="card__body">
+              <span class="card__tag">OT &amp; Anesthesia Tech</span>
+              <h3 class="card__title">Rohan Kulkarni</h3>
+              <p class="card__text">&ldquo;Shadowing surgical teams in sterile OT bays taught me instrument readiness, airway prep, and calm teamwork under pressure.&rdquo;</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -695,8 +719,8 @@
           <a class="brand" href="index.html">
             <span class="brand__mark" data-icon="heart-pulse" data-size="22"></span>
             <span class="brand__text">
-              <span class="brand__name">LifeBridge Institute</span>
-              <span class="brand__sub">Nursing &amp; Paramedical Sciences</span>
+              <span class="brand__name">LifeBridge</span>
+              <span class="brand__sub">Nursing &amp; Paramedical</span>
             </span>
           </a>
           <p style="margin-top:16px;font-size:0.92rem">INC-approved Nursing College &amp; State Paramedical Board Centre of Excellence shaping compassionate bedside nurses and allied clinical specialists since 2008.</p>
