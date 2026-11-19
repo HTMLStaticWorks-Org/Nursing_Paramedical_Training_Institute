@@ -1,0 +1,307 @@
+/**
+ * LifeBridge Institute — Lightweight Accessible SVG Chart Engine
+ * Renders responsive animated bar charts, multi-series line/area charts,
+ * donut breakdowns, and attendance heatmaps without external CDN dependencies.
+ * @module LifeBridgeCharts
+ */
+(function (global) {
+  'use strict';
+
+  /**
+   * Create an SVG element with attributes.
+   * @param {string} tag
+   * @param {Record<string, string|number>} attrs
+   * @returns {SVGElement}
+   */
+  function svgEl(tag, attrs) {
+    const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    Object.keys(attrs || {}).forEach(function (k) {
+      el.setAttribute(k, String(attrs[k]));
+    });
+    return el;
+  }
+
+  /**
+   * Ensure a shared tooltip exists inside the chart container.
+   * @param {HTMLElement} container
+   * @returns {HTMLElement}
+   */
+  function ensureTooltip(container) {
+    let tip = container.querySelector('.chart-tooltip');
+    if (!tip) {
+      tip = document.createElement('div');
+      tip.className = 'chart-tooltip';
+      tip.setAttribute('role', 'status');
+      tip.setAttribute('aria-live', 'polite');
+      container.appendChild(tip);
+    }
+    return tip;
+  }
+
+  /**
+   * Render a responsive animated bar chart.
+   * @param {HTMLElement} container
+   * @param {{labels: string[], values: number[], unit?: string, max?: number, accentIndex?: number, ariaLabel?: string}} config
+   */
+  function renderBarChart(container, config) {
+    if (!container) return;
+    container.innerHTML = '';
+    container.classList.add('lb-chart-wrap');
+    const tip = ensureTooltip(container);
+
+    const W = 560;
+    const H = 260;
+    const pad = { top: 24, right: 20, bottom: 42, left: 46 };
+    const plotW = W - pad.left - pad.right;
+    const plotH = H - pad.top - pad.bottom;
+    const maxVal = config.max || Math.max.apply(null, config.values.concat([10]));
+    const unit = config.unit || '';
+
+    const svg = svgEl('svg', {
+      viewBox: '0 0 ' + W + ' ' + H,
+      class: 'lb-svg-chart',
+      role: 'img',
+      'aria-label': config.ariaLabel || 'Bar chart'
+    });
+
+    // Horizontal grid lines
+    for (let g = 0; g <= 4; g++) {
+      const y = pad.top + (plotH * g) / 4;
+      const val = Math.round(maxVal * (1 - g / 4));
+      svg.appendChild(svgEl('line', {
+        x1: pad.left, x2: W - pad.right, y1: y, y2: y,
+        class: 'chart-grid-line'
+      }));
+      const lbl = svgEl('text', {
+        x: pad.left - 8, y: y + 4,
+        'text-anchor': 'end',
+        class: 'chart-axis-text'
+      });
+      lbl.textContent = val + unit;
+      svg.appendChild(lbl);
+    }
+
+    const count = config.labels.length;
+    const slotW = plotW / count;
+    const barW = Math.min(44, slotW * 0.56);
+
+    config.values.forEach(function (v, idx) {
+      const h = (v / maxVal) * plotH;
+      const x = pad.left + idx * slotW + (slotW - barW) / 2;
+      const y = pad.top + plotH - h;
+      const isAccent = idx === config.accentIndex;
+
+      const rect = svgEl('rect', {
+        x: x, y: y, width: barW, height: Math.max(2, h), rx: 8, ry: 8,
+        class: isAccent ? 'chart-bar chart-bar--accent' : 'chart-bar',
+        tabindex: '0',
+        'aria-label': config.labels[idx] + ': ' + v + unit
+      });
+
+      const showTip = function () {
+        tip.textContent = config.labels[idx] + ' — ' + v + unit;
+        tip.classList.add('is-visible');
+      };
+      const hideTip = function () { tip.classList.remove('is-visible'); };
+
+      rect.addEventListener('mouseenter', showTip);
+      rect.addEventListener('focus', showTip);
+      rect.addEventListener('mouseleave', hideTip);
+      rect.addEventListener('blur', hideTip);
+      svg.appendChild(rect);
+
+      const valTxt = svgEl('text', {
+        x: x + barW / 2, y: y - 7,
+        'text-anchor': 'middle',
+        class: 'chart-val-text'
+      });
+      valTxt.textContent = v + unit;
+      svg.appendChild(valTxt);
+
+      const xLbl = svgEl('text', {
+        x: x + barW / 2, y: H - 14,
+        'text-anchor': 'middle',
+        class: 'chart-axis-text'
+      });
+      xLbl.textContent = config.labels[idx];
+      svg.appendChild(xLbl);
+    });
+
+    container.appendChild(svg);
+  }
+
+  /**
+   * Render an animated area/line performance trend chart.
+   * @param {HTMLElement} container
+   * @param {{labels: string[], values: number[], min?: number, max?: number, unit?: string, ariaLabel?: string}} config
+   */
+  function renderLineChart(container, config) {
+    if (!container) return;
+    container.innerHTML = '';
+    container.classList.add('lb-chart-wrap');
+    const tip = ensureTooltip(container);
+
+    const W = 560;
+    const H = 250;
+    const pad = { top: 24, right: 24, bottom: 40, left: 46 };
+    const plotW = W - pad.left - pad.right;
+    const plotH = H - pad.top - pad.bottom;
+    const minVal = typeof config.min === 'number' ? config.min : 0;
+    const maxVal = typeof config.max === 'number' ? config.max : Math.max.apply(null, config.values.concat([10]));
+    const range = Math.max(0.01, maxVal - minVal);
+    const unit = config.unit || '';
+
+    const svg = svgEl('svg', {
+      viewBox: '0 0 ' + W + ' ' + H,
+      class: 'lb-svg-chart',
+      role: 'img',
+      'aria-label': config.ariaLabel || 'Trend chart'
+    });
+
+    const defs = svgEl('defs', {});
+    const gradId = 'lbAreaGrad_' + Math.random().toString(36).slice(2, 8);
+    const grad = svgEl('linearGradient', { id: gradId, x1: '0', y1: '0', x2: '0', y2: '1' });
+    grad.appendChild(svgEl('stop', { offset: '0%', 'stop-color': 'var(--primary)', 'stop-opacity': '0.32' }));
+    grad.appendChild(svgEl('stop', { offset: '100%', 'stop-color': 'var(--primary)', 'stop-opacity': '0.01' }));
+    defs.appendChild(grad);
+    svg.appendChild(defs);
+
+    for (let g = 0; g <= 4; g++) {
+      const y = pad.top + (plotH * g) / 4;
+      const val = (maxVal - (range * g) / 4).toFixed(maxVal <= 10 ? 1 : 0);
+      svg.appendChild(svgEl('line', {
+        x1: pad.left, x2: W - pad.right, y1: y, y2: y,
+        class: 'chart-grid-line'
+      }));
+      const lbl = svgEl('text', {
+        x: pad.left - 8, y: y + 4,
+        'text-anchor': 'end',
+        class: 'chart-axis-text'
+      });
+      lbl.textContent = val + unit;
+      svg.appendChild(lbl);
+    }
+
+    const pts = config.values.map(function (v, idx) {
+      const x = pad.left + (plotW * idx) / Math.max(1, config.values.length - 1);
+      const y = pad.top + plotH - ((v - minVal) / range) * plotH;
+      return { x: x, y: y, v: v, label: config.labels[idx] };
+    });
+
+    const lineD = pts.map(function (p, i) {
+      return (i === 0 ? 'M ' : 'L ') + p.x.toFixed(1) + ' ' + p.y.toFixed(1);
+    }).join(' ');
+
+    const areaD = lineD +
+      ' L ' + pts[pts.length - 1].x.toFixed(1) + ' ' + (pad.top + plotH) +
+      ' L ' + pts[0].x.toFixed(1) + ' ' + (pad.top + plotH) + ' Z';
+
+    svg.appendChild(svgEl('path', { d: areaD, fill: 'url(#' + gradId + ')' }));
+    svg.appendChild(svgEl('path', { d: lineD, fill: 'none', class: 'chart-line-path' }));
+
+    pts.forEach(function (p) {
+      const dot = svgEl('circle', {
+        cx: p.x, cy: p.y, r: 5.5,
+        class: 'chart-dot',
+        tabindex: '0',
+        'aria-label': p.label + ': ' + p.v + unit
+      });
+      const showTip = function () {
+        tip.textContent = p.label + ' — ' + p.v + unit;
+        tip.classList.add('is-visible');
+      };
+      const hideTip = function () { tip.classList.remove('is-visible'); };
+      dot.addEventListener('mouseenter', showTip);
+      dot.addEventListener('focus', showTip);
+      dot.addEventListener('mouseleave', hideTip);
+      dot.addEventListener('blur', hideTip);
+      svg.appendChild(dot);
+
+      const xLbl = svgEl('text', {
+        x: p.x, y: H - 14,
+        'text-anchor': 'middle',
+        class: 'chart-axis-text'
+      });
+      xLbl.textContent = p.label;
+      svg.appendChild(xLbl);
+    });
+
+    container.appendChild(svg);
+  }
+
+  /**
+   * Render a donut chart with legend.
+   * @param {HTMLElement} container
+   * @param {{items: Array<{label: string, value: number, color: string}>, centerValue: string, centerLabel: string, ariaLabel?: string}} config
+   */
+  function renderDonutChart(container, config) {
+    if (!container) return;
+    container.innerHTML = '';
+    container.classList.add('lb-chart-wrap', 'lb-donut-wrap');
+
+    const total = config.items.reduce(function (s, it) { return s + it.value; }, 0) || 1;
+    const size = 200;
+    const r = 74;
+    const circ = 2 * Math.PI * r;
+
+    const svg = svgEl('svg', {
+      viewBox: '0 0 ' + size + ' ' + size,
+      class: 'lb-donut-svg',
+      role: 'img',
+      'aria-label': config.ariaLabel || 'Distribution donut chart'
+    });
+
+    let offset = 0;
+    config.items.forEach(function (item) {
+      const len = (item.value / total) * circ;
+      const seg = svgEl('circle', {
+        cx: size / 2, cy: size / 2, r: r,
+        fill: 'none',
+        stroke: item.color,
+        'stroke-width': '22',
+        'stroke-dasharray': len.toFixed(2) + ' ' + (circ - len).toFixed(2),
+        'stroke-dashoffset': (-offset).toFixed(2),
+        transform: 'rotate(-90 ' + (size / 2) + ' ' + (size / 2) + ')'
+      });
+      svg.appendChild(seg);
+      offset += len;
+    });
+
+    const valTxt = svgEl('text', {
+      x: size / 2, y: size / 2 - 2,
+      'text-anchor': 'middle',
+      class: 'donut-center-val'
+    });
+    valTxt.textContent = config.centerValue;
+    svg.appendChild(valTxt);
+
+    const subTxt = svgEl('text', {
+      x: size / 2, y: size / 2 + 18,
+      'text-anchor': 'middle',
+      class: 'donut-center-sub'
+    });
+    subTxt.textContent = config.centerLabel;
+    svg.appendChild(subTxt);
+
+    const legend = document.createElement('ul');
+    legend.className = 'donut-legend';
+    config.items.forEach(function (item) {
+      const li = document.createElement('li');
+      const pct = Math.round((item.value / total) * 100);
+      li.innerHTML =
+        '<span class="donut-swatch" style="background:' + item.color + '"></span>' +
+        '<span class="donut-label">' + item.label + '</span>' +
+        '<strong class="donut-pct">' + pct + '%</strong>';
+      legend.appendChild(li);
+    });
+
+    container.appendChild(svg);
+    container.appendChild(legend);
+  }
+
+  global.LifeBridgeCharts = {
+    renderBarChart: renderBarChart,
+    renderLineChart: renderLineChart,
+    renderDonutChart: renderDonutChart
+  };
+})(window);

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Portal Login | LifeBridge Nursing Institute</title>
+  <meta name="description" content="Sign in to the LifeBridge Student, Faculty, or Admin LMS portal using your Student ID, password, or OTP to view clinical rosters and exam results.">
+  <link rel="canonical" href="https://lifebridgeinstitute.edu.in/pages/login.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Student Portal Login | LifeBridge Nursing Institute">
+  <meta property="og:description" content="Sign in to the LifeBridge Student, Faculty, or Admin LMS portal using your Student ID, password, or OTP to view clinical rosters and exam results.">
+  <meta property="og:url" content="https://lifebridgeinstitute.edu.in/pages/login.html">
+  <meta property="og:site_name" content="LifeBridge Institute of Nursing &amp; Paramedical Sciences">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Student Portal Login | LifeBridge Nursing Institute">
+  <meta name="twitter:description" content="Sign in to the LifeBridge Student, Faculty, or Admin LMS portal using your Student ID, password, or OTP to view clinical rosters and exam results.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="../assets/images/misc/login-side-nursing-focus.webp" type="image/webp">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/dark-mode.css">
+  <link rel="stylesheet" href="../assets/css/rtl.css">
+  <link rel="stylesheet" href="../assets/css/print.css" media="print">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "EducationalOrganization", "name": "LifeBridge Institute of Nursing & Paramedical Sciences", "url": "https://lifebridgeinstitute.edu.in/", "telephone": "+91-80-4829-1100", "email": "admissions@lifebridgeinstitute.edu.in", "address": {"@type": "PostalAddress", "streetAddress": "Plot 42, Health Sciences Corridor, Hebbal Ring Road", "addressLocality": "Bengaluru", "addressRegion": "Karnataka", "postalCode": "560024", "addressCountry": "IN"}}</script>
+</head>
+<body class="">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <!-- Branded ECG Preloader -->
+  <div class="lb-preloader" aria-hidden="true">
+    <svg class="lb-preloader__svg" viewBox="0 0 220 54">
+      <path d="M4 28 L66 28 L76 28 L84 12 L94 46 L104 6 L114 38 L122 28 L216 28" />
+    </svg>
+    <span class="lb-preloader__brand">LifeBridge Clinical Campus</span>
+  </div>
+
+
+
+  <main id="main-content">
+
+    <section class="auth-split">
+      <div class="auth-split__form-col">
+        <div class="auth-split__panel">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:28px">
+            <a class="brand" href="index.html">
+              <span class="brand__mark" data-icon="heart-pulse" data-size="20"></span>
+              <span class="brand__text">
+                <span class="brand__name">LifeBridge</span>
+                <span class="brand__sub">Portal Login</span>
+              </span>
+            </a>
+            <div style="display:flex;gap:6px">
+              <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle theme"><span data-icon="moon" data-size="18"></span></button>
+              <button type="button" class="icon-btn" data-rtl-toggle aria-label="Toggle RTL"><span class="rtl-label mono" style="font-size:0.72rem;font-weight:700">RTL</span></button>
+            </div>
+          </div>
+
+          <span class="eyebrow">Academic LMS Access</span>
+          <h1 style="font-size:clamp(1.75rem,3vw,2.3rem)">Sign In to Your Portal</h1>
+          <p style="margin-bottom:20px">Access clinical rosters, attendance heatmaps, exam marksheets, and fee receipts.</p>
+
+          <!-- Role Switcher (Student / Faculty / Admin Placeholder) -->
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px" role="group" aria-label="Select portal role">
+            <button type="button" class="tab-pill is-active" data-auth-role="student" aria-pressed="true">Student</button>
+            <button type="button" class="tab-pill" data-auth-role="faculty" aria-pressed="false">Faculty</button>
+            <button type="button" class="tab-pill" data-auth-role="admin" aria-pressed="false">Admin</button>
+          </div>
+
+          <form class="form-grid" data-validate data-redirect="dashboard/overview.html" data-success-msg="Authenticated! Opening your LifeBridge Student Dashboard...">
+            <div class="field">
+              <label class="field__label" for="login-id">Student ID or Institute Email *</label>
+              <input id="login-id" class="field__input" type="text" required placeholder="LB-2024-NUR-084 or student@lifebridge.edu" value="LB-2024-NUR-084">
+              <span class="field__error"></span>
+            </div>
+
+            <div class="field" id="password-field-group">
+              <label class="field__label" for="login-password">Password *</label>
+              <div class="field__password-wrap">
+                <input id="login-password" class="field__input" type="password" required minlength="6" placeholder="Enter your password" value="clinical2026">
+                <button type="button" class="password-toggle" data-toggle-password aria-label="Show password"><span data-icon="eye" data-size="18"></span></button>
+              </div>
+              <span class="field__error"></span>
+            </div>
+
+            <div class="field" id="otp-field-group" hidden>
+              <label class="field__label" for="login-otp">6-Digit Mobile OTP *</label>
+              <input id="login-otp" class="field__input mono" type="text" required minlength="6" maxlength="6" placeholder="482910" disabled>
+              <span class="field__error"></span>
+            </div>
+
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:0.88rem">
+              <label style="display:inline-flex;align-items:center;gap:8px">
+                <input type="checkbox" checked style="width:16px;height:16px"> Remember this device
+              </label>
+              <a href="forgot-password.html" style="font-weight:600">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%">Sign In to Portal <span data-icon="log-in" data-size="18"></span></button>
+            <button type="button" id="toggle-otp-login" class="btn btn-outline" style="width:100%">Sign in with One-Time OTP</button>
+            <div class="form-success-banner"><span data-icon="check-circle" data-size="20"></span><span>Welcome back! Redirecting to dashboard...</span></div>
+          </form>
+
+          <p style="margin-top:24px;font-size:0.9rem;text-align:center">
+            New admitted student? <a href="sign-up.html" style="font-weight:700">Activate Account</a> &bull;
+            <a href="dashboard/overview.html" style="font-weight:700">Preview Dashboard</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="auth-split__media-col">
+        <picture><source srcset="../assets/images/misc/login-side-nursing-focus.webp" type="image/webp"><img src="../assets/images/misc/login-side-nursing-focus.jpg" alt="Smiling nursing student wearing scrubs and stethoscope in a bright teaching corridor" width="1800" height="1350" fetchpriority="high" decoding="async"></picture>
+        <div class="auth-quote-box">
+          <span class="eyebrow" style="background:rgba(255,255,255,0.16);color:#fff;border-color:rgba(255,255,255,0.28)">Clinical Reflection</span>
+          <p data-rotating-quotes>&ldquo;Precision in procedure, warmth in presence — that is the bedside standard we practice every shift.&rdquo; &mdash; Florence Clinical Charter</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+
+
+  <script src="../assets/js/plugins/icons.js" defer></script>
+  <script src="../assets/js/plugins/tilt.js" defer></script>
+  <script src="../assets/js/plugins/counter.js" defer></script>
+  <script src="../assets/js/plugins/charts.js" defer></script>
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+/* ==========================================================================
+   LifeBridge Institute — Full RTL (Right-to-Left) Mirroring Stylesheet
+   Activates via <html dir="rtl"> toggle. Complements CSS logical properties
+   in style.css by mirroring directional icons, sliders, marquee, and drawers.
+   ========================================================================== */
+
+[dir="rtl"] body {
+  direction: rtl;
+  text-align: start;
+}
+
+/* Mirror directional arrows, chevrons, send, external-link icons */
+[dir="rtl"] .lb-icon-flip-rtl {
+  transform: scaleX(-1);
+}
+
+/* Marquee direction reversal */
+[dir="rtl"] .marquee__track {
+  animation-name: lbMarqueeRtl;
+}
+
+@keyframes lbMarqueeRtl {
+  from { transform: translateX(0); }
+  to { transform: translateX(50%); }
+}
+
+/* Mobile Dashboard Sidebar Drawer slides from inline-start (right in RTL) */
+@media (max-width: 1023.98px) {
+  [dir="rtl"] .dash-sidebar {
+    transform: translateX(105%);
+  }
+  [dir="rtl"] .dash-sidebar.is-open {
+    transform: translateX(0);
+  }
+}
+
+/* Floating Helpline Widget aligns cleanly on inline-end (left in RTL) */
+[dir="rtl"] .helpline-widget {
+  align-items: flex-end;
+}
+
+/* Accordion chevron and breadcrumbs */
+[dir="rtl"] .breadcrumbs .lb-icon {
+  transform: scaleX(-1);
+}
+
+/* Chart axis labels keep crisp readability */
+[dir="rtl"] .lb-svg-chart {
+  direction: ltr;
+}
+
+/* Keep phone numbers & IDs legible in RTL */
+[dir="rtl"] .mono,
+[dir="rtl"] input[type="tel"],
+[dir="rtl"] input[type="email"] {
+  direction: ltr;
+  unicode-bidi: isolate;
+}

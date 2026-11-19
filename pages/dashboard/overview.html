@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard Overview | LifeBridge LMS</title>
+  <meta name="description" content="Student portal overview showing attendance progress ring, pending OSCE assignments, exam countdown, today&#x27;s clinical timetable, and ward posting status.">
+  <link rel="canonical" href="https://lifebridgeinstitute.edu.in/pages/dashboard/overview.html">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/dark-mode.css">
+  <link rel="stylesheet" href="../../assets/css/rtl.css">
+  <link rel="stylesheet" href="../../assets/css/print.css" media="print">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to dashboard content</a>
+
+  <div class="dash-shell">
+    <!-- ===================== COLLAPSIBLE DASHBOARD SIDEBAR ===================== -->
+    <aside class="dash-sidebar" aria-label="Student dashboard navigation">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+        <a class="brand" href="../index.html">
+          <span class="brand__mark" data-icon="heart-pulse" data-size="20"></span>
+          <span class="brand__text">
+            <span class="brand__name" style="color:#fff">LifeBridge</span>
+            <span class="brand__sub" style="color:var(--gold)">Student LMS</span>
+          </span>
+        </a>
+        <button type="button" class="icon-btn" data-sidebar-collapse aria-label="Collapse sidebar" aria-expanded="true" style="background:rgba(255,255,255,0.08);color:#fff;border-color:rgba(255,255,255,0.16)">
+          <span data-icon="panel-left" data-size="18"></span>
+        </button>
+      </div>
+
+      <nav class="dash-nav" aria-label="Student modules">
+        <a class="dash-nav__link" href="overview.html" aria-current="page"><span data-icon="layout-dashboard" data-size="18"></span><span class="dash-sidebar__label">Overview</span></a>
+          <a class="dash-nav__link" href="attendance.html"><span data-icon="calendar" data-size="18"></span><span class="dash-sidebar__label">Attendance</span></a>
+          <a class="dash-nav__link" href="assignments.html"><span data-icon="clipboard-list" data-size="18"></span><span class="dash-sidebar__label">Assignments</span></a>
+          <a class="dash-nav__link" href="exam-results.html"><span data-icon="award" data-size="18"></span><span class="dash-sidebar__label">Exam Results</span></a>
+          <a class="dash-nav__link" href="timetable.html"><span data-icon="clock" data-size="18"></span><span class="dash-sidebar__label">Timetable</span></a>
+          <a class="dash-nav__link" href="clinical-postings.html"><span data-icon="hospital" data-size="18"></span><span class="dash-sidebar__label">Clinical Postings</span></a>
+          <a class="dash-nav__link" href="fees.html"><span data-icon="credit-card" data-size="18"></span><span class="dash-sidebar__label">Fees &amp; Receipts</span></a>
+          <a class="dash-nav__link" href="messages.html"><span data-icon="message-square" data-size="18"></span><span class="dash-sidebar__label">Messages</span></a>
+          <a class="dash-nav__link" href="profile.html"><span data-icon="user" data-size="18"></span><span class="dash-sidebar__label">My Profile</span></a>
+          <a class="dash-nav__link" href="settings.html"><span data-icon="settings" data-size="18"></span><span class="dash-sidebar__label">Settings</span></a>
+      </nav>
+
+      <div style="margin-top:auto;padding-top:16px;border-top:1px solid rgba(255,255,255,0.12);display:flex;flex-direction:column;gap:6px">
+        <a class="dash-nav__link" href="../index.html"><span data-icon="home" data-size="18"></span><span class="dash-sidebar__label">Public Website</span></a>
+        <a class="dash-nav__link" href="../login.html"><span data-icon="log-out" data-size="18"></span><span class="dash-sidebar__label">Sign Out</span></a>
+      </div>
+    </aside>
+
+    <!-- ===================== DASHBOARD MAIN SHELL ===================== -->
+    <div class="dash-main">
+      <header class="dash-topbar">
+        <div style="display:flex;align-items:center;gap:12px">
+          <button type="button" class="icon-btn menu-toggle" data-sidebar-mobile aria-label="Open sidebar navigation" aria-expanded="false">
+            <span data-icon="menu" data-size="20"></span>
+          </button>
+          <div>
+            <nav class="breadcrumbs" aria-label="Breadcrumb" style="margin:0;justify-content:flex-start">
+              <a href="overview.html">Student Portal</a>
+              <span data-icon="chevron-right" data-size="14"></span>
+              <span aria-current="page">Overview</span>
+            </nav>
+            <h1 style="font-size:clamp(1.2rem,2vw,1.55rem);margin:2px 0 0">Dashboard Overview</h1>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:8px;position:relative">
+          <button type="button" class="icon-btn" data-open-search aria-label="Quick search (Ctrl+K)"><span data-icon="search" data-size="18"></span></button>
+          <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false"><span data-icon="moon" data-size="18"></span></button>
+          <button type="button" class="icon-btn" data-rtl-toggle aria-label="Toggle RTL direction" aria-pressed="false"><span class="rtl-label mono" style="font-size:0.72rem;font-weight:700">RTL</span></button>
+          <button type="button" class="icon-btn" data-notif-toggle aria-label="View notifications" aria-expanded="false" aria-controls="dash-notif-popover">
+            <span data-icon="bell" data-size="18"></span>
+          </button>
+          <a href="profile.html" class="dash-avatar-badge" aria-label="Student Profile: Aisha Khan" title="Aisha Khan — B.Sc. Nursing Sem V">AK</a>
+
+          <div id="dash-notif-popover" hidden style="position:absolute;inset-block-start:54px;inset-inline-end:0;width:290px;padding:16px;border-radius:16px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-lg);z-index:900">
+            <strong style="display:block;margin-bottom:8px;color:var(--ink)">Portal Alerts (3)</strong>
+            <div style="display:grid;gap:8px;font-size:0.84rem">
+              <div style="padding:8px;border-radius:10px;background:var(--warning-soft)">Community Health attendance is 73% — attend next 2 sessions.</div>
+              <div style="padding:8px;border-radius:10px;background:var(--primary-soft)">ICU Clinical Rotation Roster updated for Monday 07:30 AM.</div>
+              <div style="padding:8px;border-radius:10px;background:var(--success-soft)">OSCE Practical Rubric Score published: 94/100.</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main id="main-content" class="dash-content dash-hydrate is-loading">
+        <!-- Skeleton Loader Displayed Briefly on Initial Hydrate -->
+        <div class="skeleton-only" aria-hidden="true">
+          <div class="grid grid-4" style="margin-bottom:20px">
+            <div class="skeleton" style="height:130px;border-radius:20px"></div>
+            <div class="skeleton" style="height:130px;border-radius:20px"></div>
+            <div class="skeleton" style="height:130px;border-radius:20px"></div>
+            <div class="skeleton" style="height:130px;border-radius:20px"></div>
+          </div>
+          <div class="skeleton" style="height:260px;border-radius:20px"></div>
+        </div>
+
+        <div class="loaded-only">
+
+          <!-- Greeting & Quick KPI Strip -->
+          <div class="form-card" style="background:var(--grad-clinical);color:#fff;margin-bottom:24px">
+            <span class="eyebrow" style="background:rgba(255,255,255,0.16);color:#fff;border-color:rgba(255,255,255,0.24)">B.Sc. Nursing &bull; Semester V &bull; ID: LB-2024-NUR-084</span>
+            <h2 style="color:#fff;margin-top:4px">Good Morning, Aisha Khan</h2>
+            <p style="color:rgba(221,243,238,0.9);margin:0">Your Cardiac ICU hospital rotation at St. Jude Teaching Hospital resumes Monday 07:30 AM. Keep up your 91% clinical attendance!</p>
+          </div>
+
+          <div class="grid grid-4" style="margin-bottom:24px">
+            <article class="card" data-tilt>
+              <div class="card__body">
+                <div class="progress-ring" data-progress="91">
+                  <svg viewBox="0 0 110 110"><circle class="ring-bg" cx="55" cy="55" r="44"></circle><circle class="ring-progress" cx="55" cy="55" r="44"></circle></svg>
+                  <span class="progress-ring__label">91%</span>
+                </div>
+                <h3 class="card__title" style="font-size:1.05rem">Overall Attendance</h3>
+                <p class="card__text" style="font-size:0.84rem">80% INC minimum exceeded cleanly</p>
+              </div>
+            </article>
+
+            <article class="card" data-tilt>
+              <div class="card__body">
+                <span class="card__icon" style="background:var(--warning-soft);color:var(--warning)" data-icon="clipboard-list" data-size="24"></span>
+                <span class="card__tag">Due This Week</span>
+                <h3 class="card__title mono" style="font-size:2rem" data-count="2">2</h3>
+                <p class="card__text" style="font-size:0.84rem">Pending OSCE care plans</p>
+                <div class="card__footer"><a class="btn btn-ghost" href="assignments.html">Open Tasks</a></div>
+              </div>
+            </article>
+
+            <article class="card" data-tilt>
+              <div class="card__body">
+                <span class="card__icon" style="background:var(--accent-soft);color:var(--accent-btn)" data-icon="calendar" data-size="24"></span>
+                <span class="card__tag">Next University Exam</span>
+                <h3 class="card__title mono" style="font-size:2rem" data-count="23" data-suffix="d">23d</h3>
+                <p class="card__text" style="font-size:0.84rem">Med-Surg II &bull; Dec 12, 2026</p>
+                <div class="card__footer"><a class="btn btn-ghost" href="exam-results.html">Past Results</a></div>
+              </div>
+            </article>
+
+            <article class="card" data-tilt>
+              <div class="card__body">
+                <span class="card__icon" style="background:var(--success-soft);color:var(--success)" data-icon="hospital" data-size="24"></span>
+                <span class="card__tag">Clinical Posting</span>
+                <h3 class="card__title" style="font-size:1.15rem">Cardiac ICU</h3>
+                <p class="card__text" style="font-size:0.84rem">St. Jude Teaching Hospital &bull; Morning Shift</p>
+                <div class="card__footer"><a class="btn btn-ghost" href="clinical-postings.html">View Roster</a></div>
+              </div>
+            </article>
+          </div>
+
+          <div class="grid grid-2" style="gap:24px">
+            <div class="form-card">
+              <span class="eyebrow">Today&rsquo;s Schedule</span>
+              <h3>Thursday, Nov 19 Timetable</h3>
+              <div class="table-wrap" style="margin-top:12px">
+                <table class="data-table">
+                  <thead><tr><th>Time</th><th>Session</th><th>Venue</th></tr></thead>
+                  <tbody>
+                    <tr><td data-label="Time" class="mono">08:30 AM</td><td data-label="Session"><strong>Medical-Surgical Nursing II</strong></td><td data-label="Venue">Hall C-201</td></tr>
+                    <tr><td data-label="Time" class="mono">10:30 AM</td><td data-label="Session"><strong>ECG &amp; Defibrillator OSCE Lab</strong></td><td data-label="Venue">SimLab Bay 3</td></tr>
+                    <tr><td data-label="Time" class="mono">02:00 PM</td><td data-label="Session"><strong>Pediatric Ward Supervision</strong></td><td data-label="Venue">St. Jude Wing B</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="form-card">
+              <span class="eyebrow eyebrow--gold">Campus Announcements</span>
+              <h3>Latest Faculty Notices</h3>
+              <div style="display:grid;gap:12px;margin-top:12px">
+                <div style="padding:14px;border-radius:14px;background:var(--paper);border:1px solid var(--border)">
+                  <span class="badge-pill badge-pill--warning" style="margin-bottom:6px">Action Required</span>
+                  <strong style="display:block">Submit Signed ICU Clinical Logbook by Nov 28</strong>
+                  <span style="font-size:0.84rem">Preceptor signature required prior to Semester V OSCE viva.</span>
+                </div>
+                <div style="padding:14px;border-radius:14px;background:var(--paper);border:1px solid var(--border)">
+                  <span class="badge-pill badge-pill--info" style="margin-bottom:6px">Global Cell</span>
+                  <strong style="display:block">Free OET Listening Diagnostic Session — Nov 25</strong>
+                  <span style="font-size:0.84rem">Register at Digital Library Lab 2 by Tuesday 04:00 PM.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="../../assets/js/plugins/icons.js" defer></script>
+  <script src="../../assets/js/plugins/tilt.js" defer></script>
+  <script src="../../assets/js/plugins/counter.js" defer></script>
+  <script src="../../assets/js/plugins/charts.js" defer></script>
+  <script src="../../assets/js/main.js" defer></script>
+  <script src="../../assets/js/dashboard.js" defer></script>
+</body>
+</html>

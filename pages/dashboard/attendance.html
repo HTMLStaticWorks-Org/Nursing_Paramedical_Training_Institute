@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance &amp; Clinical Hours | LifeBridge LMS</title>
+  <meta name="description" content="Track daily nursing attendance calendar heatmap, subject-wise percentages, theory versus hospital clinical hours, shortage alerts, and medical leave requests.">
+  <link rel="canonical" href="https://lifebridgeinstitute.edu.in/pages/dashboard/attendance.html">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="stylesheet" href="../../assets/css/dark-mode.css">
+  <link rel="stylesheet" href="../../assets/css/rtl.css">
+  <link rel="stylesheet" href="../../assets/css/print.css" media="print">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to dashboard content</a>
+
+  <div class="dash-shell">
+    <!-- ===================== COLLAPSIBLE DASHBOARD SIDEBAR ===================== -->
+    <aside class="dash-sidebar" aria-label="Student dashboard navigation">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+        <a class="brand" href="../index.html">
+          <span class="brand__mark" data-icon="heart-pulse" data-size="20"></span>
+          <span class="brand__text">
+            <span class="brand__name" style="color:#fff">LifeBridge</span>
+            <span class="brand__sub" style="color:var(--gold)">Student LMS</span>
+          </span>
+        </a>
+        <button type="button" class="icon-btn" data-sidebar-collapse aria-label="Collapse sidebar" aria-expanded="true" style="background:rgba(255,255,255,0.08);color:#fff;border-color:rgba(255,255,255,0.16)">
+          <span data-icon="panel-left" data-size="18"></span>
+        </button>
+      </div>
+
+      <nav class="dash-nav" aria-label="Student modules">
+        <a class="dash-nav__link" href="overview.html"><span data-icon="layout-dashboard" data-size="18"></span><span class="dash-sidebar__label">Overview</span></a>
+          <a class="dash-nav__link" href="attendance.html" aria-current="page"><span data-icon="calendar" data-size="18"></span><span class="dash-sidebar__label">Attendance</span></a>
+          <a class="dash-nav__link" href="assignments.html"><span data-icon="clipboard-list" data-size="18"></span><span class="dash-sidebar__label">Assignments</span></a>
+          <a class="dash-nav__link" href="exam-results.html"><span data-icon="award" data-size="18"></span><span class="dash-sidebar__label">Exam Results</span></a>
+          <a class="dash-nav__link" href="timetable.html"><span data-icon="clock" data-size="18"></span><span class="dash-sidebar__label">Timetable</span></a>
+          <a class="dash-nav__link" href="clinical-postings.html"><span data-icon="hospital" data-size="18"></span><span class="dash-sidebar__label">Clinical Postings</span></a>
+          <a class="dash-nav__link" href="fees.html"><span data-icon="credit-card" data-size="18"></span><span class="dash-sidebar__label">Fees &amp; Receipts</span></a>
+          <a class="dash-nav__link" href="messages.html"><span data-icon="message-square" data-size="18"></span><span class="dash-sidebar__label">Messages</span></a>
+          <a class="dash-nav__link" href="profile.html"><span data-icon="user" data-size="18"></span><span class="dash-sidebar__label">My Profile</span></a>
+          <a class="dash-nav__link" href="settings.html"><span data-icon="settings" data-size="18"></span><span class="dash-sidebar__label">Settings</span></a>
+      </nav>
+
+      <div style="margin-top:auto;padding-top:16px;border-top:1px solid rgba(255,255,255,0.12);display:flex;flex-direction:column;gap:6px">
+        <a class="dash-nav__link" href="../index.html"><span data-icon="home" data-size="18"></span><span class="dash-sidebar__label">Public Website</span></a>
+        <a class="dash-nav__link" href="../login.html"><span data-icon="log-out" data-size="18"></span><span class="dash-sidebar__label">Sign Out</span></a>
+      </div>
+    </aside>
+
+    <!-- ===================== DASHBOARD MAIN SHELL ===================== -->
+    <div class="dash-main">
+      <header class="dash-topbar">
+        <div style="display:flex;align-items:center;gap:12px">
+          <button type="button" class="icon-btn menu-toggle" data-sidebar-mobile aria-label="Open sidebar navigation" aria-expanded="false">
+            <span data-icon="menu" data-size="20"></span>
+          </button>
+          <div>
+            <nav class="breadcrumbs" aria-label="Breadcrumb" style="margin:0;justify-content:flex-start">
+              <a href="overview.html">Student Portal</a>
+              <span data-icon="chevron-right" data-size="14"></span>
+              <span aria-current="page">Attendance</span>
+            </nav>
+            <h1 style="font-size:clamp(1.2rem,2vw,1.55rem);margin:2px 0 0">Attendance & Clinical Hours</h1>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:8px;position:relative">
+          <button type="button" class="icon-btn" data-open-search aria-label="Quick search (Ctrl+K)"><span data-icon="search" data-size="18"></span></button>
+          <button type="button" class="icon-btn" data-theme-toggle aria-label="Toggle dark mode" aria-pressed="false"><span data-icon="moon" data-size="18"></span></button>
+          <button type="button" class="icon-btn" data-rtl-toggle aria-label="Toggle RTL direction" aria-pressed="false"><span class="rtl-label mono" style="font-size:0.72rem;font-weight:700">RTL</span></button>
+          <button type="button" class="icon-btn" data-notif-toggle aria-label="View notifications" aria-expanded="false" aria-controls="dash-notif-popover">
+            <span data-icon="bell" data-size="18"></span>
+          </button>
+          <a href="profile.html" class="dash-avatar-badge" aria-label="Student Profile: Aisha Khan" title="Aisha Khan — B.Sc. Nursing Sem V">AK</a>
+
+          <div id="dash-notif-popover" hidden style="position:absolute;inset-block-start:54px;inset-inline-end:0;width:290px;padding:16px;border-radius:16px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-lg);z-index:900">
+            <strong style="display:block;margin-bottom:8px;color:var(--ink)">Portal Alerts (3)</strong>
+            <div style="display:grid;gap:8px;font-size:0.84rem">
+              <div style="padding:8px;border-radius:10px;background:var(--warning-soft)">Community Health attendance is 73% — attend next 2 sessions.</div>
+              <div style="padding:8px;border-radius:10px;background:var(--primary-soft)">ICU Clinical Rotation Roster updated for Monday 07:30 AM.</div>
+              <div style="padding:8px;border-radius:10px;background:var(--success-soft)">OSCE Practical Rubric Score published: 94/100.</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main id="main-content" class="dash-content dash-hydrate is-loading">
+        <!-- Skeleton Loader Displayed Briefly on Initial Hydrate -->
+        <div class="skeleton-only" aria-hidden="true">
+          <div class="grid grid-4" style="margin-bottom:20px">
+            <div class="skeleton" style="height:130px;border-radius:20px"></div>
+            <div class="skeleton" style="height:130px;border-radius:20px"></div>
+            <div class="skeleton" style="height:130px;border-radius:20px"></div>
+            <div class="skeleton" style="height:130px;border-radius:20px"></div>
+          </div>
+          <div class="skeleton" style="height:260px;border-radius:20px"></div>
+        </div>
+
+        <div class="loaded-only">
+
+          <!-- Shortage Alert Banner -->
+          <div style="padding:16px 20px;border-radius:16px;background:var(--warning-soft);border:1px solid var(--warning);margin-bottom:24px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+            <span data-icon="alert-triangle" data-size="22" style="color:var(--warning)"></span>
+            <div>
+              <strong style="color:var(--ink)">Attendance Shortage Alert — Community Health Nursing (73%)</strong>
+              <p style="margin:0;font-size:0.88rem">University exams require 80% theory attendance and 100% clinical posting completion. Attending the next 2 lectures restores your standing to 81%.</p>
+            </div>
+          </div>
+
+          <div class="grid grid-2" style="gap:24px;margin-bottom:24px">
+            <div class="form-card">
+              <h3>Subject-Wise Attendance (%)</h3>
+              <p style="font-size:0.86rem;margin-bottom:14px">Coral highlight indicates subjects below 80% threshold.</p>
+              <div id="attendance-subject-chart"></div>
+            </div>
+            <div class="form-card">
+              <h3>Theory vs Clinical Hours Logged</h3>
+              <p style="font-size:0.86rem;margin-bottom:14px">Verified INC cumulative hour distribution through Sem V.</p>
+              <div id="theory-clinical-donut"></div>
+            </div>
+          </div>
+
+          <div class="grid grid-2" style="gap:24px">
+            <div class="form-card">
+              <span class="eyebrow">November 2026</span>
+              <h3>Daily Attendance Calendar Heatmap</h3>
+              <div id="attendance-heatmap" class="heatmap-grid" style="margin-top:16px"></div>
+              <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:16px;font-size:0.8rem">
+                <span class="badge-pill badge-pill--success">Theory Present</span>
+                <span class="badge-pill badge-pill--info">Hospital Clinical</span>
+                <span class="badge-pill badge-pill--danger">Absent</span>
+              </div>
+            </div>
+
+            <div class="form-card">
+              <span class="eyebrow eyebrow--accent">Medical / Duty Leave</span>
+              <h3>Submit Leave Request</h3>
+              <form class="form-grid" data-validate data-success-msg="Leave application forwarded to Prof. Rekha Menon for approval.">
+                <div class="form-grid form-grid--2">
+                  <div class="field"><label class="field__label" for="lv-from">From Date *</label><input id="lv-from" class="field__input" type="date" required><span class="field__error"></span></div>
+                  <div class="field"><label class="field__label" for="lv-to">To Date *</label><input id="lv-to" class="field__input" type="date" required><span class="field__error"></span></div>
+                </div>
+                <div class="field"><label class="field__label" for="lv-type">Leave Category *</label><select id="lv-type" class="field__select" required><option value="">Select</option><option>Medical Leave (Attach Slip)</option><option>Family Emergency</option><option>Inter-College Symposium Duty</option></select><span class="field__error"></span></div>
+                <div class="field"><label class="field__label" for="lv-reason">Reason *</label><textarea id="lv-reason" class="field__textarea" required minlength="8" placeholder="Explain dates &amp; clinical make-up shift plan..."></textarea><span class="field__error"></span></div>
+                <button type="submit" class="btn btn-primary" style="width:100%">Submit Leave Request</button>
+                <div class="form-success-banner">Leave request #LV-409 submitted to your Cohort Guardian.</div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="../../assets/js/plugins/icons.js" defer></script>
+  <script src="../../assets/js/plugins/tilt.js" defer></script>
+  <script src="../../assets/js/plugins/counter.js" defer></script>
+  <script src="../../assets/js/plugins/charts.js" defer></script>
+  <script src="../../assets/js/main.js" defer></script>
+  <script src="../../assets/js/dashboard.js" defer></script>
+</body>
+</html>

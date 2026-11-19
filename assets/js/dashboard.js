@@ -1,0 +1,300 @@
+/**
+ * LifeBridge Institute — Student Dashboard Application Logic (ES6+)
+ * Drives collapsible sidebar, skeleton-to-data hydration, attendance heatmap,
+ * kanban assignments & file drag-drop upload, semester GPA & marksheet engine,
+ * clinical logbook, Stripe/PayPal fee checkout modals, and faculty messaging.
+ */
+(function (global, doc) {
+  'use strict';
+
+  /**
+   * Toggle collapsible desktop sidebar and mobile off-canvas drawer.
+   */
+  function initShell() {
+    const shell = doc.querySelector('.dash-shell');
+    const sidebar = doc.querySelector('.dash-sidebar');
+    const collapseBtn = doc.querySelector('[data-sidebar-collapse]');
+    const mobileBtn = doc.querySelector('[data-sidebar-mobile]');
+
+    if (collapseBtn && shell) {
+      collapseBtn.addEventListener('click', function () {
+        const collapsed = shell.classList.toggle('is-collapsed');
+        collapseBtn.setAttribute('aria-expanded', collapsed ? 'false' : 'true');
+      });
+    }
+
+    if (mobileBtn && sidebar) {
+      mobileBtn.addEventListener('click', function () {
+        const open = sidebar.classList.toggle('is-open');
+        mobileBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      doc.addEventListener('click', function (e) {
+        if (sidebar.classList.contains('is-open') && !sidebar.contains(e.target) && !mobileBtn.contains(e.target)) {
+          sidebar.classList.remove('is-open');
+        }
+      });
+    }
+
+    // Notifications popover
+    const notifBtn = doc.querySelector('[data-notif-toggle]');
+    const notifPop = doc.querySelector('#dash-notif-popover');
+    if (notifBtn && notifPop) {
+      notifBtn.addEventListener('click', function () {
+        const hidden = notifPop.hidden;
+        notifPop.hidden = !hidden;
+        notifBtn.setAttribute('aria-expanded', hidden ? 'true' : 'false');
+      });
+    }
+
+    // Hydrate skeleton loaders smoothly on first load
+    const loaders = doc.querySelectorAll('.dash-hydrate');
+    if (loaders.length) {
+      global.setTimeout(function () {
+        loaders.forEach(function (el) { el.classList.remove('is-loading'); });
+        if (global.LifeBridgeCounter) global.LifeBridgeCounter.init(doc);
+      }, 360);
+    }
+  }
+
+  /**
+   * Render interactive overview and attendance charts.
+   */
+  function initOverviewAndAttendance() {
+    if (global.LifeBridgeCharts) {
+      const attChart = doc.querySelector('#attendance-subject-chart');
+      if (attChart) {
+        global.LifeBridgeCharts.renderBarChart(attChart, {
+          labels: ['Med-Surg', 'Pharmacology', 'OBG Lab', 'Community', 'SimLab', 'Ward ICU'],
+          values: [92, 86, 94, 73, 98, 96],
+          unit: '%',
+          max: 100,
+          accentIndex: 3,
+          ariaLabel: 'Subject-wise attendance percentages'
+        });
+      }
+
+      const splitChart = doc.querySelector('#theory-clinical-donut');
+      if (splitChart) {
+        global.LifeBridgeCharts.renderDonutChart(splitChart, {
+          items: [
+            { label: 'Hospital Clinical Hours (612 hrs)', value: 612, color: '#0E8B8B' },
+            { label: 'Simulation Skills Lab (180 hrs)', value: 180, color: '#FF6B5E' },
+            { label: 'Classroom Theory (440 hrs)', value: 440, color: '#E3B85C' }
+          ],
+          centerValue: '1,232h',
+          centerLabel: 'Logged',
+          ariaLabel: 'Theory versus clinical and simulation hours logged'
+        });
+      }
+    }
+
+    // Build November 2026 Attendance Calendar Heatmap
+    const heatmap = doc.querySelector('#attendance-heatmap');
+    if (heatmap) {
+      const statuses = [
+        'holiday', 'present', 'present', 'clinical', 'clinical', 'present', 'holiday',
+        'holiday', 'present', 'clinical', 'clinical', 'present', 'present', 'holiday',
+        'holiday', 'absent', 'present', 'clinical', 'clinical', 'present', 'holiday',
+        'holiday', 'present', 'present', 'clinical', 'clinical', 'present', 'holiday',
+        'holiday', 'present'
+      ];
+      heatmap.innerHTML = statuses.map(function (st, idx) {
+        const label = st.charAt(0).toUpperCase() + st.slice(1);
+        return '<div class="heatmap-cell heatmap-cell--' + st + '" title="Nov ' + (idx + 1) + ': ' + label + '" aria-label="November ' + (idx + 1) + ', ' + label + '">' + (idx + 1) + '</div>';
+      }).join('');
+    }
+  }
+
+  /**
+   * Assignments drag-and-drop file upload and rubric feedback modal.
+   */
+  function initAssignments() {
+    const dropzone = doc.querySelector('#assignment-dropzone');
+    const fileInput = doc.querySelector('#assignment-file');
+    const fileStatus = doc.querySelector('#assignment-file-status');
+    if (dropzone && fileInput) {
+      const handleFile = function (files) {
+        if (!files || !files.length) return;
+        const f = files[0];
+        if (fileStatus) {
+          fileStatus.textContent = 'Selected: ' + f.name + ' (' + Math.round(f.size / 1024) + ' KB) — Ready to submit';
+        }
+        if (global.LifeBridgeToast) global.LifeBridgeToast('Attached "' + f.name + '" cleanly.', 'success');
+      };
+
+      dropzone.addEventListener('dragover', function (e) {
+        e.preventDefault();
+        dropzone.style.borderColor = 'var(--primary)';
+      });
+      dropzone.addEventListener('dragleave', function () {
+        dropzone.style.borderColor = '';
+      });
+      dropzone.addEventListener('drop', function (e) {
+        e.preventDefault();
+        dropzone.style.borderColor = '';
+        handleFile(e.dataTransfer.files);
+      });
+      fileInput.addEventListener('change', function () { handleFile(fileInput.files); });
+    }
+  }
+
+  /**
+   * Exam Results semester switcher, GPA computation, and trend chart.
+   */
+  function initExamResults() {
+    const semSelect = doc.querySelector('#semester-selector');
+    const tbody = doc.querySelector('#exam-marks-tbody');
+    const gpaEl = doc.querySelector('#computed-sgpa');
+    const rankEl = doc.querySelector('#computed-rank');
+    const trendChart = doc.querySelector('#exam-trend-chart');
+
+    const SEM_DATA = {
+      sem5: {
+        sgpa: '9.14', rank: '4th / 80',
+        rows: [
+          ['NUR-501', 'Medical-Surgical Nursing II', 88, 100, 'A+', '9.5'],
+          ['NUR-502', 'Child Health & Pediatric Nursing', 84, 100, 'A', '9.0'],
+          ['NUR-503', 'Mental Health & Psychiatric Nursing', 82, 100, 'A', '8.8'],
+          ['NUR-504', 'Clinical Practicum & OSCE Evaluation', 94, 100, 'O', '9.6'],
+          ['NUR-505', 'Nursing Research & Biostatistics', 86, 100, 'A+', '9.0']
+        ]
+      },
+      sem4: {
+        sgpa: '8.86', rank: '7th / 80',
+        rows: [
+          ['NUR-401', 'Pharmacology & Pathology II', 81, 100, 'A', '8.6'],
+          ['NUR-402', 'Adult Health Nursing I', 85, 100, 'A+', '9.0'],
+          ['NUR-403', 'Professionalism & Bioethics', 90, 100, 'O', '9.2'],
+          ['NUR-404', 'Medical-Surgical Ward Practicum', 89, 100, 'A+', '9.1'],
+          ['NUR-405', 'Health Informatics & Nursing Tech', 83, 100, 'A', '8.4']
+        ]
+      },
+      sem3: {
+        sgpa: '8.62', rank: '11th / 80',
+        rows: [
+          ['NUR-301', 'Applied Microbiology & Infection Control', 79, 100, 'B+', '8.2'],
+          ['NUR-302', 'Pharmacology Foundations I', 82, 100, 'A', '8.6'],
+          ['NUR-303', 'Adult Health Skills Lab', 91, 100, 'O', '9.3'],
+          ['NUR-304', 'Applied Sociology for Healthcare', 84, 100, 'A', '8.5'],
+          ['NUR-305', 'Community Field Survey Practicum', 85, 100, 'A+', '8.5']
+        ]
+      }
+    };
+
+    const renderSem = function (key) {
+      const data = SEM_DATA[key];
+      if (!data || !tbody) return;
+      if (gpaEl) gpaEl.textContent = data.sgpa;
+      if (rankEl) rankEl.textContent = data.rank;
+      tbody.innerHTML = data.rows.map(function (r) {
+        return '<tr>' +
+          '<td data-label="Code" class="mono">' + r[0] + '</td>' +
+          '<td data-label="Subject"><strong>' + r[1] + '</strong></td>' +
+          '<td data-label="Marks" class="mono">' + r[2] + ' / ' + r[3] + '</td>' +
+          '<td data-label="Grade"><span class="badge-pill badge-pill--success">' + r[4] + '</span></td>' +
+          '<td data-label="Grade Points" class="mono">' + r[5] + '</td>' +
+        '</tr>';
+      }).join('');
+    };
+
+    if (semSelect) {
+      semSelect.addEventListener('change', function () { renderSem(semSelect.value); });
+      renderSem(semSelect.value);
+    }
+
+    if (trendChart && global.LifeBridgeCharts) {
+      global.LifeBridgeCharts.renderLineChart(trendChart, {
+        labels: ['Sem 1', 'Sem 2', 'Sem 3', 'Sem 4', 'Sem 5'],
+        values: [8.2, 8.45, 8.62, 8.86, 9.14],
+        min: 7.0,
+        max: 10.0,
+        unit: ' SGPA',
+        ariaLabel: 'Semester-wise SGPA trend from Semester 1 to Semester 5'
+      });
+    }
+
+    const printBtn = doc.querySelector('[data-print-page]');
+    if (printBtn) {
+      printBtn.addEventListener('click', function () { global.print(); });
+    }
+  }
+
+  /**
+   * Fees Stripe/PayPal demo checkout & live messaging thread switcher.
+   */
+  function initFeesAndMessages() {
+    doc.querySelectorAll('[data-pay-gateway]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const gw = btn.getAttribute('data-pay-gateway');
+        if (global.LifeBridgeToast) {
+          global.LifeBridgeToast('Opening ' + gw + ' secure checkout sandbox (TODO: connect live API key).', 'info');
+        }
+      });
+    });
+
+    // Messaging thread switcher & live reply
+    const threads = doc.querySelectorAll('[data-thread-id]');
+    const threadTitle = doc.querySelector('#active-thread-title');
+    const threadBody = doc.querySelector('#active-thread-messages');
+    const replyForm = doc.querySelector('#dash-reply-form');
+
+    const THREAD_MSGS = {
+      mentor: [
+        { from: 'Dr. Sanjay Kulkarni', text: 'Great improvement on your ICU telemetry interpretation during yesterday\'s simulation debrief, Aisha.', time: '09:15 AM' },
+        { from: 'You', text: 'Thank you Sir! I have uploaded my revised sepsis triage flowsheet for review.', time: '09:28 AM', self: true }
+      ],
+      clinical: [
+        { from: 'Ms. Pooja Sharma', text: 'Reminder: Your Cardiac ICU rotation at St. Jude Teaching Hospital starts Monday at 07:30 AM sharp. Bring your stamped clinical logbook.', time: 'Yesterday' }
+      ],
+      accounts: [
+        { from: 'Accounts & Scholarship Cell', text: 'Your Merit Scholarship waiver (INR 15,000) has been applied to Semester 6 tuition.', time: 'Nov 14' }
+      ]
+    };
+
+    let activeKey = 'mentor';
+
+    const renderMessages = function () {
+      if (!threadBody) return;
+      const list = THREAD_MSGS[activeKey] || [];
+      threadBody.innerHTML = list.map(function (m) {
+        return '<div style="padding:14px 16px;border-radius:14px;margin-bottom:10px;' +
+          (m.self ? 'background:var(--primary-soft);margin-inline-start:auto;max-width:85%' : 'background:var(--surface-alt);max-width:85%') + '">' +
+          '<div style="display:flex;justify-content:space-between;gap:12px;font-size:0.78rem;margin-bottom:4px"><strong>' + m.from + '</strong><span>' + m.time + '</span></div>' +
+          '<p style="margin:0;font-size:0.92rem">' + m.text + '</p></div>';
+      }).join('');
+    };
+
+    if (threads.length && threadBody) {
+      threads.forEach(function (t) {
+        t.addEventListener('click', function () {
+          activeKey = t.getAttribute('data-thread-id');
+          threads.forEach(function (x) { x.classList.toggle('is-active', x === t); });
+          if (threadTitle) threadTitle.textContent = t.getAttribute('data-thread-name') || 'Conversation';
+          renderMessages();
+        });
+      });
+      renderMessages();
+
+      if (replyForm) {
+        replyForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          const input = replyForm.querySelector('#reply-input');
+          const txt = (input ? input.value : '').trim();
+          if (!txt) return;
+          THREAD_MSGS[activeKey].push({ from: 'You', text: txt, time: 'Just now', self: true });
+          input.value = '';
+          renderMessages();
+          if (global.LifeBridgeToast) global.LifeBridgeToast('Message sent to faculty inbox.', 'success');
+        });
+      }
+    }
+  }
+
+  doc.addEventListener('DOMContentLoaded', function () {
+    initShell();
+    initOverviewAndAttendance();
+    initAssignments();
+    initExamResults();
+    initFeesAndMessages();
+  });
+})(window, document);
