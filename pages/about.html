@@ -70,9 +70,7 @@
 
       <div class="header-actions">
         <div class="header-auth-links">
-          <a class="icon-btn" href="login.html" aria-label="Login" title="Login">
-            <span data-icon="log-in" data-size="18"></span>
-          </a>
+          <a class="icon-btn header-login-btn" href="login.html" aria-label="Login" title="Login">Login</a>
           <a class="icon-btn" href="dashboard/overview.html" aria-label="Student Dashboard" title="Student Dashboard">
             <span data-icon="layout-dashboard" data-size="18"></span>
           </a>
@@ -134,9 +132,7 @@
     </nav>
     <div class="mobile-drawer__footer">
       <div class="mobile-drawer__tools">
-        <a class="icon-btn" href="login.html" aria-label="Login" title="Login">
-          <span data-icon="log-in" data-size="18"></span>
-        </a>
+        <a class="icon-btn header-login-btn" href="login.html" aria-label="Login" title="Login">Login</a>
         <a class="icon-btn" href="dashboard/overview.html" aria-label="Student Dashboard" title="Student Dashboard">
           <span data-icon="layout-dashboard" data-size="18"></span>
         </a>
@@ -154,9 +150,9 @@
   <main id="main-content">
 
     <!-- ===================== ABOUT PAGE HEADER & STORY ===================== -->
-    <section class="page-hero">
+    <section class="page-hero" style="background-image: linear-gradient(135deg, rgba(7, 30, 36, 0.58) 0%, rgba(11, 43, 51, 0.48) 100%), url('../assets/images/about/campus-building-exterior.webp'); background-size: cover; background-position: center;">
       <div class="container">
-        <div class="section-head" style="margin-bottom:32px">
+        <div class="section-head" style="margin-bottom:0">
           <nav class="breadcrumbs" aria-label="Breadcrumb">
             <a href="index.html">Home</a> <span data-icon="chevron-right" data-size="14"></span> <span aria-current="page">About Us</span>
           </nav>
@@ -164,7 +160,11 @@
           <h1>Where Scientific Precision Meets Compassionate Bedside Care</h1>
           <p class="lead">Founded by senior hospital nursing directors and medical educators, LifeBridge was built to close the gap between classroom theory and calm, confident clinical execution.</p>
         </div>
+      </div>
+    </section>
 
+    <section class="section section--compact" style="padding-block-end:0" aria-label="LifeBridge Campus">
+      <div class="container">
         <div style="border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-lg);max-height:500px">
           <picture><source srcset="../assets/images/misc/coming-soon-modern-wing.webp" type="image/webp"><img src="../assets/images/misc/coming-soon-modern-wing.jpg" alt="Modern glass-and-stone academic health sciences campus building surrounded by landscaped greenery" width="1800" height="1200" fetchpriority="high" decoding="async"></picture>
         </div>

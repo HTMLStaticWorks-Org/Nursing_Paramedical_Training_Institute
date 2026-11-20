@@ -688,6 +688,14 @@ ul, ol {
   transition: transform var(--t-fast) var(--ease-out), background-color var(--t-fast), border-color var(--t-fast);
 }
 
+.icon-btn.header-login-btn {
+  width: auto;
+  padding-inline: 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
 .icon-btn:hover {
   border-color: var(--primary);
   color: var(--primary-btn);
@@ -2629,9 +2637,67 @@ ul, ol {
    11. PAGE BANNERS, TIMELINES, CAMPUS MAP, GALLERY, BLOG & AUTH SPLIT
    -------------------------------------------------------------------------- */
 .page-hero {
+  position: relative;
+  overflow: hidden;
   padding-block: var(--s-12) var(--s-12);
-  background: var(--surface-alt);
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  background-color: var(--ink-deep);
+  background-image: linear-gradient(135deg, rgba(7, 30, 36, 0.58) 0%, rgba(11, 43, 51, 0.48) 100%), var(--page-hero-bg, none);
+  background-size: cover;
+  background-position: center;
   border-block-end: 1px solid var(--border);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+@media (min-width: 768px) {
+  .page-hero {
+    min-height: 360px;
+  }
+}
+
+.page-hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.page-hero h1 {
+  color: #FFFFFF;
+}
+
+.page-hero .lead {
+  color: rgba(237, 247, 246, 0.9);
+}
+
+.page-hero .breadcrumbs {
+  color: rgba(221, 243, 238, 0.82);
+}
+
+.page-hero .breadcrumbs a {
+  color: #7CE8E2;
+}
+
+.page-hero .breadcrumbs a:hover {
+  color: #FFFFFF;
+}
+
+.page-hero .eyebrow {
+  background: rgba(255, 255, 255, 0.14);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  backdrop-filter: blur(8px);
+}
+
+.page-hero .btn-outline {
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.page-hero .btn-outline:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: #FFFFFF;
+  color: #FFFFFF;
 }
 
 .breadcrumbs {
@@ -3580,7 +3646,7 @@ main .auth-split--single .auth-split__panel .btn {
 }
 
 .site-footer .brand__sub {
-  color: var(--gold);
+  color: #22B5B5;
 }
 
 .footer-grid {

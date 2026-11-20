@@ -70,9 +70,7 @@
 
       <div class="header-actions">
         <div class="header-auth-links">
-          <a class="icon-btn" href="login.html" aria-label="Login" title="Login">
-            <span data-icon="log-in" data-size="18"></span>
-          </a>
+          <a class="icon-btn header-login-btn" href="login.html" aria-label="Login" title="Login">Login</a>
           <a class="icon-btn" href="dashboard/overview.html" aria-label="Student Dashboard" title="Student Dashboard">
             <span data-icon="layout-dashboard" data-size="18"></span>
           </a>
@@ -134,9 +132,7 @@
     </nav>
     <div class="mobile-drawer__footer">
       <div class="mobile-drawer__tools">
-        <a class="icon-btn" href="login.html" aria-label="Login" title="Login">
-          <span data-icon="log-in" data-size="18"></span>
-        </a>
+        <a class="icon-btn header-login-btn" href="login.html" aria-label="Login" title="Login">Login</a>
         <a class="icon-btn" href="dashboard/overview.html" aria-label="Student Dashboard" title="Student Dashboard">
           <span data-icon="layout-dashboard" data-size="18"></span>
         </a>
@@ -154,9 +150,9 @@
   <main id="main-content">
 
     <!-- ===================== ARTICLE HEADER ===================== -->
-    <section class="page-hero">
+    <section class="page-hero" style="background-image: linear-gradient(135deg, rgba(7, 30, 36, 0.58) 0%, rgba(11, 43, 51, 0.48) 100%), url('../assets/images/home/home2-hero-slide-clinical-care.webp'); background-size: cover; background-position: center;">
       <div class="container" style="max-width:920px">
-        <div class="section-head" style="margin-bottom:28px">
+        <div class="section-head" style="margin-bottom:0">
           <nav class="breadcrumbs" aria-label="Breadcrumb">
             <a href="index.html">Home</a> <span data-icon="chevron-right" data-size="14"></span>
             <a href="blog.html">Blog</a> <span data-icon="chevron-right" data-size="14"></span>
@@ -166,15 +162,15 @@
           <h1>Mastering SBAR Shift Handovers &amp; Clinical Compassion in Your First ICU Rotation</h1>
           <p class="lead">How structured communication frameworks protect critically ill patients during shift transitions while keeping human empathy at the center of nursing care.</p>
         </div>
-        <div style="border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-lg)">
-          <picture><source srcset="../assets/images/blog/details-hero-clinical-compassion.webp" type="image/webp"><img src="../assets/images/blog/details-hero-clinical-compassion.jpg" alt="Compassionate nurse checking on a recovering hospital patient during morning rounds" width="1800" height="1200" fetchpriority="high" decoding="async"></picture>
-        </div>
       </div>
     </section>
 
     <!-- ===================== ARTICLE BODY + STICKY TOC ===================== -->
     <section class="section">
       <div class="container">
+        <div style="max-width:920px;margin:0 auto 40px;border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-lg)">
+          <picture><source srcset="../assets/images/blog/details-hero-clinical-compassion.webp" type="image/webp"><img src="../assets/images/blog/details-hero-clinical-compassion.jpg" alt="Compassionate nurse checking on a recovering hospital patient during morning rounds" width="1800" height="1200" fetchpriority="high" decoding="async"></picture>
+        </div>
         <div class="grid" style="grid-template-columns:1fr;gap:40px" id="bd-grid">
           <style>
             @media (min-width: 1024px) {
